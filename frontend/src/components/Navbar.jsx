@@ -60,7 +60,7 @@ const Navbar = () => {
         isScrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className={`glass rounded-2xl px-6 flex justify-between h-16 items-center transition-all duration-500 ${
           isScrolled ? 'shadow-xl border-white/30' : 'shadow-none border-white/10'
         }`}>

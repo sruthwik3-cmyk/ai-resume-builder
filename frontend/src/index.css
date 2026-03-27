@@ -88,6 +88,21 @@
     radial-gradient(at 0% 100%, hsla(225,100%,10%,1) 0, transparent 50%);
   }
 
+  /* Resume Preview Scaling for Mobile */
+  .resume-preview-scale {
+    transform-origin: top center;
+  }
+  
+  @media (max-width: 640px) {
+    .resume-preview-scale {
+      transform: scale(0.45);
+    }
+  }
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .resume-preview-scale {
+      transform: scale(0.7);
+    }
+  }
 }
 
 

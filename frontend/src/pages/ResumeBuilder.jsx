@@ -654,10 +654,10 @@ const ResumeBuilder = () => {
               <span className="text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">Live Preview Synced</span>
             </div>
 
-            <div className="w-full max-w-[210mm] mx-auto">
+            <div className="w-[210mm] md:w-full max-w-[210mm] mx-auto min-h-screen">
               <motion.div 
                 layout
-                className="bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] origin-top mb-20 relative min-h-[297mm]"
+                className="w-[210mm] bg-white shadow-[0_20px_50px_rgba(0,0,0,0.15)] origin-top mb-40 relative min-h-[297mm] resume-preview-scale"
               >
                 <div ref={resumeRef} className="w-full">
                   <SelectedTemplateComponent data={formData} preview={false} />

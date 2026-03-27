@@ -59,7 +59,7 @@ const Home = () => {
 
           <motion.h1 
             variants={itemVariants}
-            className="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.1]"
+            className="text-5xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.1]"
           >
             Your Dream Job<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 animate-gradient pb-2 block">
@@ -96,11 +96,11 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-12">Trusted by builders at worldwide leaders</p>
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-1000">
-            <div className="text-3xl font-black tracking-tighter">google</div>
-            <div className="text-3xl font-black tracking-tighter italic">META</div>
-            <div className="text-3xl font-black tracking-tighter">amazon</div>
-            <div className="text-3xl font-black tracking-tighter uppercase">netflix</div>
-            <div className="text-3xl font-black tracking-tighter decoration-indigo-600 underline underline-offset-8">AirBnb</div>
+            <div className="text-2xl md:text-3xl font-black tracking-tighter">google</div>
+            <div className="text-2xl md:text-3xl font-black tracking-tighter italic">META</div>
+            <div className="text-2xl md:text-3xl font-black tracking-tighter">amazon</div>
+            <div className="text-2xl md:text-3xl font-black tracking-tighter uppercase">netflix</div>
+            <div className="text-2xl md:text-3xl font-black tracking-tighter decoration-indigo-600 underline underline-offset-8">AirBnb</div>
           </div>
         </div>
       </section>
