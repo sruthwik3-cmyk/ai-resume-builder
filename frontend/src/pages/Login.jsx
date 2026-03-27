@@ -96,7 +96,6 @@ const Login = () => {
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={() => toast.error('Google Login Failed')}
-                useOneTap
                 theme="filled_blue"
                 shape="pill"
                 text="continue_with"
