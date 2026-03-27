@@ -22,7 +22,7 @@ Do not sound overly robotic. Return ONLY the final polished paragraph. No conver
 
 User's Draft:
 ${summary}`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ improvedSummary: response.text });
   } catch (err) {
     res.status(500).json({ message: 'AI generation failed', error: err.message });
@@ -43,7 +43,7 @@ export const suggestSkills = async (req, res) => {
 
   try {
     const prompt = `List exactly 8 critical skills (hard and soft) for a "${role}". Return ONLY a comma-separated list of the 8 skills. No additional text, bullets, or intro.`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     const skills = response.text.split(',').map(s => s.trim()).filter(Boolean);
     res.json({ suggestions: skills });
   } catch (err) {
@@ -66,7 +66,7 @@ Use standard bullet points (•) if appropriate. Return ONLY the final polished 
 
 User's Draft:
 ${description}`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ improvedDescription: response.text });
   } catch (err) {
     res.status(500).json({ message: 'AI generation failed', error: err.message });
@@ -83,7 +83,7 @@ export const suggestAtsKeywords = async (req, res) => {
 
   try {
     const prompt = `List exactly 5 ATS-friendly keywords for the job title "${role}". Return ONLY a comma-separated list of the 5 keywords.`;
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     const keywords = response.text.split(',').map(s => s.trim()).filter(Boolean);
     res.json({ keywords });
   } catch (err) {
@@ -132,7 +132,7 @@ Do NOT include any text outside the JSON array. Output ONLY the JSON.
 Resume Data:
 ${resumeTextContext}`;
 
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     
     // Clean potential markdown code blocks from response
     let cleanText = response.text.replace(/```json|```/g, '').trim();
@@ -176,7 +176,7 @@ Instructions:
 4. Output ONLY the raw text of the cover letter. Do not include any placeholder brackets (like [Company Name] or [Date]). Just infer the company from the JD if possible, or omit it if not explicitly listed.
 5. End with a professional sign-off using the name from the Resume Data.`;
 
-    const response = await ai.models.generateContent({ model: 'gemini-2.5-flash', contents: prompt });
+    const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ coverLetter: response.text });
   } catch (err) {
     res.status(500).json({ message: 'Cover letter generation failed', error: err.message });

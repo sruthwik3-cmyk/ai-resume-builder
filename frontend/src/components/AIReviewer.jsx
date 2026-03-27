@@ -140,7 +140,7 @@ const AIReviewer = ({ resumeData, onApplyFix }) => {
           <button
             onClick={runReview}
             disabled={loading}
-            className="btn-premium w-full py-5 rounded-[1.5rem] flex items-center justify-center gap-3 group/btn"
+            className="btn-premium w-full py-4 rounded-2xl flex items-center justify-center gap-3 group/btn shadow-xl shadow-indigo-500/10 hover:shadow-indigo-500/20"
           >
             {loading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
@@ -167,7 +167,7 @@ const AIReviewer = ({ resumeData, onApplyFix }) => {
                 <div className="w-1.5 h-1.5 bg-indigo-600 rounded-full animate-pulse" />
                 Audit Report & Findings
               </h4>
-              <span className="text-[10px] font-black text-indigo-600 uppercase">Gemini 2.5 Intelligence</span>
+              <span className="text-[10px] font-black text-indigo-500 bg-indigo-50 dark:bg-indigo-900/30 px-2 py-1 rounded-lg uppercase tracking-wider">Gemini 1.5 Flash</span>
             </div>
             
             <ul className="space-y-3 pb-8">
