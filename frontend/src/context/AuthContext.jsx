@@ -46,6 +46,20 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const googleLogin = async (tokenId) => {
+    try {
+      const { data } = await api.post('/auth/google', { tokenId });
+      setUser(data);
+      localStorage.setItem('user', JSON.stringify(data));
+      toast.success('Google login successful');
+      return { success: true };
+    } catch (error) {
+      const message = error.response?.data?.message || 'Google login failed';
+      toast.error(message);
+      return { success: false, message };
+    }
+  };
+
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
@@ -57,6 +71,7 @@ export const AuthProvider = ({ children }) => {
     loading,
     login,
     register,
+    googleLogin,
     logout,
   };
 

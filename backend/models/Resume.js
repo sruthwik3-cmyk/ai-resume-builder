@@ -19,6 +19,7 @@ const resumeSchema = new mongoose.Schema(
       phone: String,
       address: String,
       jobTitle: String,
+      photo: String,
     },
     summary: {
       type: String,
@@ -79,7 +80,7 @@ const resumeSchema = new mongoose.Schema(
     selectedTemplate: {
       type: String,
       default: 'modern',
-      enum: ['modern', 'minimal', 'creative', 'ats'],
+      enum: ['modern', 'minimal', 'creative', 'ats', 'elite'],
     },
   },
   {

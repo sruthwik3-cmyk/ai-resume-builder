@@ -17,27 +17,29 @@ export const ResumeProvider = ({ children }) => {
       const { data } = await api.get('/resumes');
       setResumes(data);
     } catch (error) {
-      toast.error('Failed to fetch resumes');
+      const msg = error.response?.data?.message || error.message;
+      toast.error(`Failed to fetch resumes: ${msg}`);
     } finally {
       setLoading(false);
     }
   }, []);
 
-  const fetchResumeById = async (id) => {
+  const fetchResumeById = useCallback(async (id) => {
     setLoading(true);
     try {
       const { data } = await api.get(`/resumes/${id}`);
       setCurrentResume(data);
       return data;
     } catch (error) {
-      toast.error('Failed to load resume');
+      const msg = error.response?.data?.message || error.message;
+      toast.error(`Failed to load resume: ${msg}`);
       return null;
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const createResume = async (resumeData) => {
+  const createResume = useCallback(async (resumeData) => {
     try {
       const { data } = await api.post('/resumes', resumeData);
       setResumes((prev) => [data, ...prev]);
@@ -47,43 +49,39 @@ export const ResumeProvider = ({ children }) => {
       toast.error('Failed to create resume');
       return null;
     }
-  };
+  }, []);
 
-  const updateResume = async (id, updateData) => {
+  const updateResume = useCallback(async (id, updateData) => {
     try {
       const { data } = await api.put(`/resumes/${id}`, updateData);
       setResumes((prev) => prev.map((r) => (r._id === id ? data : r)));
-      if (currentResume?._id === id) {
-        setCurrentResume(data);
-      }
+      setCurrentResume((prev) => (prev?._id === id ? data : prev));
       return data;
     } catch (error) {
       toast.error('Failed to update resume');
       return null;
     }
-  };
+  }, []);
 
-  const updateCurrentResumeLocal = (updateFn) => {
+  const updateCurrentResumeLocal = useCallback((updateFn) => {
     setCurrentResume((prev) => {
       if (!prev) return prev;
       return updateFn(prev);
     });
-  };
+  }, []);
 
-  const deleteResume = async (id) => {
+  const deleteResume = useCallback(async (id) => {
     try {
       await api.delete(`/resumes/${id}`);
       setResumes((prev) => prev.filter((r) => r._id !== id));
-      if (currentResume?._id === id) {
-        setCurrentResume(null);
-      }
+      setCurrentResume((prev) => (prev?._id === id ? null : prev));
       toast.success('Resume deleted');
       return true;
     } catch (error) {
       toast.error('Failed to delete resume');
       return false;
     }
-  };
+  }, []);
 
   const value = {
     resumes,

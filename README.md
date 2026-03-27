@@ -1,70 +1,45 @@
-# AI Resume Builder and Career Assistant
+# 🚀 AI Resume Pro Studio | Premium AI Career Studio
 
-A modern, responsive, full-stack AI-powered resume builder allowing users to create, preview, and download ATS-friendly resumes. Includes an AI Assistant for suggesting skills, improving summaries, and enhancing project descriptions.
+**The ultimate digital workspace for high-impact careers.** AI Resume Pro Studio combines Gemini 2.5 Flash intelligence with a world-class, "Silicon Valley" design system to automate your path to the world's most innovative companies.
 
-## Tech Stack
-- **Frontend**: React.js with Vite, Tailwind CSS, React Router DOM, React Hook Form, Zustand/Context, Framer Motion, html2pdf.js
-- **Backend**: Node.js, Express.js, MongoDB, Mongoose, JWT & bcrypt
+![Premium SaaS Studio Showcase](C:/Users/ADMIN/.gemini/antigravity/brain/7c36d941-c505-443a-82c8-307a84a35414/premium_dashboard_final_v2_1774579044458.png)
 
-## Features
-- Secure User Authentication (JWT)
-- Live side-by-side Resume Preview
-- Multiple Resume Templates (Modern, Minimal, Creative, ATS)
-- PDF Export with perfect layout rendering
-- Mock AI Assistant integration for generative enhancements
-- Dark Mode support
-- Responsive SaaS-style glassmorphism UI
+## ✨ Elite Features
 
-## Setup Instructions
+- **🧠 Gemini 2.5 Flash Powered**: Ultra-fast content synthesis, real-time grammar scaling, and expert-level professional tone calibration.
+- **💎 Ultra-Premium UI/UX**: Sophisticated glassmorphic design system featuring **Mesh Gradients**, **Custom Scrollbars**, and staggered Framer Motion micro-animations.
+- **📄 Designer Template Collection**: 6 high-fidelity, industry-standard templates: **Modern, Minimal, Creative, ATS, Executive, and Classic**.
+- **🔍 Intelligent AI Auditor**: Global resume scoring with actionable, data-driven feedback and keyword gap analysis.
+- **✉️ AI Letter Studio**: A dedicated document workspace for generating perfectly tailored cover letters in seconds.
+- **📈 Growth Engine**: Integrated **Social Proof**, **Testimonial Grid**, and **Newsletter Studio** for a true high-conversion experience.
+- **🛡️ Enterprise-Grade Auth**: Secure JWT-protected authentication with a premium, seamless onboarding flow.
 
-### Prerequisites
-- Node.js (v16+ recommended)
-- MongoDB instance running locally (port 27017) or MongoDB Atlas URI
+## 🛠️ Tech Stack
 
-### 1. Backend Setup
-1. Navigate to the backend directory:
-   \`\`\`bash
-   cd backend
-   \`\`\`
-2. Install dependencies:
-   \`\`\`bash
-   npm install
-   \`\`\`
-3. Create a \`.env\` file in the \`backend\` root or duplicate \`.env.example\`:
-   \`\`\`env
-   PORT=5000
-   MONGO_URI=mongodb://localhost:27017/ai-resume-builder
-   JWT_SECRET=supersecretjwtkeythatissecure
-   JWT_EXPIRE=30d
-   NODE_ENV=development
-   \`\`\`
-4. Start the backend development server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-   The server should start on \`http://localhost:5000\`.
+- **Frontend**: React 18, Vite, Tailwind CSS, Framer Motion, Lucide Icons, React Hook Form.
+- **Backend**: Node.js, Express, MongoDB Atlas, Mongoose, Google Gemini AI SDK.
+- **Utilities**: html2pdf.js, Axios, React Hot Toast.
 
-### 2. Frontend Setup
-1. Open a new terminal and navigate to the frontend directory:
-   \`\`\`bash
-   cd frontend
-   \`\`\`
-2. Install dependencies:
-   \`\`\`bash
-   npm install
-   \`\`\`
-3. Start the Vite development server:
-   \`\`\`bash
-   npm run dev
-   \`\`\`
-   The client should start on \`http://localhost:5173\`.
+## 🚀 Quick Start
 
-### Default API
-If the backend is running on a different port, update the \`baseURL\` in \`frontend/src/services/api.js\`. By default, it uses \`http://localhost:5000/api\`.
+### 1. Backend Configuration
+```bash
+cd backend
+npm install
+# Configure your .env (see .env.example)
+npm run dev
+```
 
-## Usage
-1. Open your browser to the local frontend link.
-2. Sign Up as a new user.
-3. Once in the dashboard, click "Create New Resume" or "View Templates" to begin building.
-4. Try the AI Assistant features under the Summary, Experience, and Skills tabs.
-5. Export your resume as PDF using the button on the top right.
+### 2. Frontend Configuration
+```bash
+cd frontend
+npm install
+# Set VITE_API_URL in your environment
+npm run dev
+```
+
+## 🌐 Deployment Roadmap
+Ready to go live? Follow our [Deployment Guide](file:///C:/Users/ADMIN/.gemini/antigravity/brain/7c36d941-c505-443a-82c8-307a84a35414/deployment_plan.md) to host on **Vercel** and **Render** in under 30 minutes.
+
+---
+Built with ❤️ for the future of work.

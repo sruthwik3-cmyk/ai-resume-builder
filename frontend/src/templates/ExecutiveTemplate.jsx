@@ -1,6 +1,7 @@
 import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
 
-const MinimalTemplate = ({ data, preview = false }) => {
+const ExecutiveTemplate = ({ data, preview = false }) => {
   const fs = preview ? 'text-[9px]' : 'text-[12px]';
   const headingFs = preview ? 'text-[10px]' : 'text-xs';
   const nameFs = preview ? 'text-xl' : 'text-3xl';
@@ -8,60 +9,63 @@ const MinimalTemplate = ({ data, preview = false }) => {
 
   return (
     <div 
-      className={`bg-white text-slate-800 ${preview ? 'p-6' : 'p-12 sm:p-16'} ${fs} font-serif max-w-[21cm] min-h-[29.7cm] mx-auto relative`} 
+      className={`bg-white text-slate-800 ${preview ? 'p-6' : 'p-10 sm:p-14'} ${fs} font-serif max-w-[21cm] min-h-[29.7cm] mx-auto relative overflow-hidden`} 
       id="resume-preview"
-      style={{ fontFamily: "'Georgia', 'Cambria', serif" }}
+      style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
     >
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-6">
-        <h1 className={`${nameFs} font-normal text-slate-900 tracking-wide uppercase mb-1`}>
+      <header className="text-center mb-6 border-b-2 border-slate-800 pb-5">
+        <h1 className={`${nameFs} font-bold text-slate-900 uppercase tracking-wide mb-1`}>
           {data.personalInfo?.firstName} {data.personalInfo?.lastName}
         </h1>
         {data.personalInfo?.jobTitle && (
-          <p className={`${subFs} font-bold text-slate-400 uppercase tracking-[0.3em] mb-3`}>
+          <p className={`${subFs} font-semibold text-slate-500 uppercase tracking-[0.3em] mb-3 font-sans`}>
             {data.personalInfo.jobTitle}
           </p>
         )}
-        <div className={`flex flex-wrap justify-center items-center gap-x-4 gap-y-1 ${subFs} text-slate-500`}>
+        <div className={`flex flex-wrap justify-center items-center gap-x-4 gap-y-1 ${subFs} text-slate-500 font-sans`}>
           {data.personalInfo?.email && <span>{data.personalInfo.email}</span>}
-          {data.personalInfo?.phone && <span>• {data.personalInfo.phone}</span>}
-          {data.personalInfo?.address && <span>• {data.personalInfo.address}</span>}
-          {data.socialLinks?.linkedin && <span>• {data.socialLinks.linkedin.replace('https://', '')}</span>}
-          {data.socialLinks?.github && <span>• {data.socialLinks.github.replace('https://', '')}</span>}
+          {data.personalInfo?.phone && <span>|</span>}
+          {data.personalInfo?.phone && <span>{data.personalInfo.phone}</span>}
+          {data.personalInfo?.address && <span>|</span>}
+          {data.personalInfo?.address && <span>{data.personalInfo.address}</span>}
+          {data.socialLinks?.linkedin && <span>|</span>}
+          {data.socialLinks?.linkedin && <span>{data.socialLinks.linkedin.replace('https://', '')}</span>}
+          {data.socialLinks?.github && <span>|</span>}
+          {data.socialLinks?.github && <span>{data.socialLinks.github.replace('https://', '')}</span>}
         </div>
       </header>
 
-      <hr className="border-slate-200 mb-5" />
-
       {/* ========= SUMMARY ========= */}
       {data.summary && (
-        <section className="mb-5 text-center">
-          <p className="text-slate-600 leading-relaxed italic max-w-2xl mx-auto">
-            {data.summary}
-          </p>
+        <section className="mb-5">
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-2 border-b border-slate-200 pb-1 font-sans`}>
+            Summary
+          </h3>
+          <p className="text-slate-600 leading-relaxed text-justify">{data.summary}</p>
         </section>
       )}
 
       {/* ========= EXPERIENCE ========= */}
       {data.experience && data.experience.length > 0 && (
         <section className="mb-5">
-          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
             Experience
           </h3>
           <div className="space-y-4">
             {data.experience.map((exp, index) => (
               <div key={index}>
-                <div className="flex justify-between items-baseline mb-0.5">
+                <div className="flex justify-between items-baseline mb-0.5 font-sans">
                   <h4 className="font-bold text-slate-900">{exp.title}</h4>
                   <span className={`${subFs} text-slate-400 whitespace-nowrap`}>
                     {exp.startDate} — {exp.current ? 'Present' : exp.endDate}
                   </span>
                 </div>
-                <p className={`${subFs} text-slate-500 italic mb-1`}>
-                  {exp.company}{exp.location ? `, ${exp.location}` : ''}
+                <p className={`${subFs} text-slate-500 font-semibold mb-1 uppercase tracking-wider font-sans`}>
+                  {exp.company}{exp.location ? ` — ${exp.location}` : ''}
                 </p>
                 {exp.description && (
-                  <ul className="list-disc list-outside pl-4 text-slate-600 space-y-0.5 leading-relaxed">
+                  <ul className="list-disc list-outside pl-4 text-slate-600 space-y-0.5 leading-relaxed font-sans">
                     {exp.description.split('\n').filter(Boolean).map((line, i) => (
                       <li key={i}>{line.replace(/^[-•]\s*/, '')}</li>
                     ))}
@@ -76,12 +80,12 @@ const MinimalTemplate = ({ data, preview = false }) => {
       {/* ========= EDUCATION ========= */}
       {data.education && data.education.length > 0 && (
         <section className="mb-5">
-          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
             Education
           </h3>
           <div className="space-y-3">
             {data.education.map((edu, index) => (
-              <div key={index}>
+              <div key={index} className="font-sans">
                 <div className="flex justify-between items-baseline">
                   <h4 className="font-bold text-slate-900">
                     {edu.degree}{edu.fieldOfStudy ? ` in ${edu.fieldOfStudy}` : ''}
@@ -90,7 +94,7 @@ const MinimalTemplate = ({ data, preview = false }) => {
                     {edu.startDate}{edu.endDate ? ` — ${edu.endDate}` : ''}
                   </span>
                 </div>
-                <p className={`${subFs} text-slate-500 italic`}>{edu.institution}</p>
+                <p className={`${subFs} text-slate-500`}>{edu.institution}</p>
                 {edu.description && <p className="text-slate-600 mt-1">{edu.description}</p>}
               </div>
             ))}
@@ -101,11 +105,11 @@ const MinimalTemplate = ({ data, preview = false }) => {
       {/* ========= SKILLS ========= */}
       {data.skills && data.skills.length > 0 && (
         <section className="mb-5">
-          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-2 border-b border-slate-200 pb-1 font-sans`}>
             Skills
           </h3>
-          <p className="text-slate-600 text-center leading-relaxed">
-            {data.skills.join('  •  ')}
+          <p className="text-slate-600 leading-relaxed font-sans">
+            {data.skills.join('  |  ')}
           </p>
         </section>
       )}
@@ -113,10 +117,10 @@ const MinimalTemplate = ({ data, preview = false }) => {
       {/* ========= PROJECTS ========= */}
       {data.projects && data.projects.length > 0 && (
         <section className="mb-5">
-          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
             Projects
           </h3>
-          <div className="space-y-3">
+          <div className="space-y-3 font-sans">
             {data.projects.map((proj, index) => (
               <div key={index}>
                 <div className="flex justify-between items-baseline mb-0.5">
@@ -128,11 +132,15 @@ const MinimalTemplate = ({ data, preview = false }) => {
                   )}
                 </div>
                 {proj.description && (
-                  <p className="text-slate-600 leading-relaxed">{proj.description}</p>
+                  <ul className="list-disc list-outside pl-4 text-slate-600 space-y-0.5 leading-relaxed">
+                    {proj.description.split('\n').filter(Boolean).map((line, i) => (
+                      <li key={i}>{line.replace(/^[-•]\s*/, '')}</li>
+                    ))}
+                  </ul>
                 )}
                 {proj.technologies && proj.technologies.length > 0 && (
-                  <p className={`${subFs} text-slate-400 mt-0.5 italic`}>
-                    {proj.technologies.join(', ')}
+                  <p className={`${subFs} text-slate-400 mt-0.5`}>
+                    <span className="font-semibold">Technologies:</span> {proj.technologies.join(', ')}
                   </p>
                 )}
               </div>
@@ -144,4 +152,4 @@ const MinimalTemplate = ({ data, preview = false }) => {
   );
 };
 
-export default MinimalTemplate;
+export default ExecutiveTemplate;

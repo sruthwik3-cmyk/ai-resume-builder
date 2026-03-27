@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Sparkles, Check, X, Loader2 } from 'lucide-react';
+import { Sparkles, Check, X, Loader2, Wand2, Lightbulb, Zap, RefreshCcw, Plus } from 'lucide-react';
 import api from '../services/api';
 import toast from 'react-hot-toast';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const AIAssistant = ({ section, value, onApply, contextData }) => {
   const [loading, setLoading] = useState(false);
@@ -9,8 +10,8 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
   const [skillsList, setSkillsList] = useState([]);
   
   const handleEnhanceSummary = async () => {
-    if (!value || value.length < 10) {
-      toast.error('Please write a brief summary first (at least 10 chars)');
+    if (!value || value.length < 3) {
+      toast.error('Write a draft first so I can enhance it!', { icon: '✍️' });
       return;
     }
     
@@ -18,16 +19,17 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
     try {
       const { data } = await api.post('/ai/improve-summary', { summary: value });
       setSuggestion(data.improvedSummary);
+      toast.success('Professional summary generated!', { icon: '✨' });
     } catch (error) {
-      toast.error('Failed to get AI suggestions');
+      toast.error('AI was unable to process this request.');
     } finally {
       setLoading(false);
     }
   };
 
   const handleEnhanceProject = async () => {
-    if (!value || value.length < 5) {
-      toast.error('Please write a brief description first');
+    if (!value || value.length < 3) {
+      toast.error('Add some project details first!');
       return;
     }
     
@@ -35,8 +37,9 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
     try {
       const { data } = await api.post('/ai/improve-project', { description: value });
       setSuggestion(data.improvedDescription);
+      toast.success('Optimized for impact!', { icon: '🚀' });
     } catch (error) {
-      toast.error('Failed to get AI suggestions');
+      toast.error('Enhancement failed.');
     } finally {
       setLoading(false);
     }
@@ -44,7 +47,7 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
 
   const handleSuggestSkills = async () => {
     if (!contextData?.jobTitle) {
-      toast.error('Please fill in your Job Title first in Personal Info');
+      toast.error('Job Title is missing from Personal Info!');
       return;
     }
     
@@ -52,8 +55,9 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
     try {
       const { data } = await api.post('/ai/suggest-skills', { role: contextData.jobTitle });
       setSkillsList(data.suggestions);
+      toast.success('Market-relevant skills found!');
     } catch (error) {
-      toast.error('Failed to get AI suggestions');
+      toast.error('Skill suggestions failed.');
     } finally {
       setLoading(false);
     }
@@ -65,90 +69,134 @@ const AIAssistant = ({ section, value, onApply, contextData }) => {
   };
 
   const addSkill = (skill) => {
-    onApply(skill); // Assuming onApply for skills handles appending
+    onApply(skill);
   };
 
   return (
-    <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800 rounded-lg p-4 mt-4">
-      <div className="flex items-center text-indigo-700 dark:text-indigo-400 font-medium mb-3">
-        <Sparkles size={18} className="mr-2" />
-        AI Assistant
+    <div className="glass px-6 py-5 rounded-[2rem] border border-indigo-100/50 dark:border-indigo-900/30 shadow-xl mt-6 relative overflow-hidden group">
+      {/* Background Glow */}
+      <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/5 blur-[80px] rounded-full group-hover:bg-indigo-500/10 transition-all duration-700" />
+      
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          <div className="p-2 bg-indigo-600 rounded-xl text-white shadow-lg shadow-indigo-600/20">
+            <Sparkles size={16} />
+          </div>
+          <span className="text-sm font-black text-slate-800 dark:text-white uppercase tracking-tighter">Gemini AI Assistant</span>
+        </div>
+        
+        {loading && (
+          <div className="flex items-center gap-2 px-3 py-1 bg-indigo-50 dark:bg-indigo-900/40 rounded-full">
+            <Loader2 size={12} className="animate-spin text-indigo-600" />
+            <span className="text-[10px] font-black text-indigo-600 uppercase">Processing...</span>
+          </div>
+        ) }
       </div>
 
-      {section === 'summary' && !suggestion && (
-        <button
-          onClick={handleEnhanceSummary}
-          disabled={loading}
-          className="w-full flex justify-center items-center bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 py-2 rounded-md transition-colors font-medium text-sm"
-        >
-          {loading ? <Loader2 size={16} className="animate-spin mr-2" /> : 'Rewrite professionally'}
-        </button>
-      )}
-
-      {section === 'project' && !suggestion && (
-        <button
-          onClick={handleEnhanceProject}
-          disabled={loading}
-          className="w-full flex justify-center items-center bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 py-2 rounded-md transition-colors font-medium text-sm"
-        >
-          {loading ? <Loader2 size={16} className="animate-spin mr-2" /> : 'Enhance description'}
-        </button>
-      )}
-
-      {section === 'skills' && skillsList.length === 0 && (
-        <button
-          onClick={handleSuggestSkills}
-          disabled={loading}
-          className="w-full flex justify-center items-center bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 hover:bg-indigo-50 dark:hover:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 py-2 rounded-md transition-colors font-medium text-sm"
-        >
-          {loading ? <Loader2 size={16} className="animate-spin mr-2" /> : 'Suggest skills based on Job Title'}
-        </button>
-      )}
-
-      {suggestion && (
-        <div className="bg-white dark:bg-gray-800 border border-indigo-200 dark:border-indigo-700 p-3 rounded-md shadow-sm">
-          <p className="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap leading-relaxed">{suggestion}</p>
-          <div className="flex space-x-2 mt-3 justify-end">
-            <button
-              onClick={() => setSuggestion(null)}
-              className="p-1 text-gray-400 hover:text-red-500 transition-colors"
-              title="Reject"
-            >
-              <X size={16} />
-            </button>
-            <button
-              onClick={applyText}
-              className="p-1 text-green-600 hover:text-green-700 transition-colors"
-              title="Apply"
-            >
-              <Check size={16} />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {skillsList.length > 0 && (
-        <div className="mt-2 text-sm">
-          <p className="text-gray-600 dark:text-gray-400 mb-2">Suggested skills (click to add):</p>
-          <div className="flex flex-wrap gap-2">
-            {skillsList.map((skill, index) => (
-              <button
-                key={index}
-                onClick={() => addSkill(skill)}
-                className="bg-white dark:bg-gray-800 border-indigo-200 dark:border-indigo-700 px-2 py-1 rounded border text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 transition-colors"
-              >
-                + {skill}
-              </button>
-            ))}
-          </div>
-          <button 
-            onClick={() => setSkillsList([])} 
-            className="text-xs text-red-500 mt-2 hover:underline"
+      <AnimatePresence mode="wait">
+        {!suggestion && skillsList.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
           >
-            Clear Suggestions
-          </button>
-        </div>
-      )}
+            {section === 'summary' && (
+              <button
+                onClick={handleEnhanceSummary}
+                disabled={loading}
+                className="btn-premium w-full py-3.5 text-xs flex items-center justify-center gap-2 group/btn"
+              >
+                <Wand2 size={14} className="group-hover/btn:rotate-12 transition-transform" />
+                <span>Rewrite with AI Professionalism</span>
+              </button>
+            )}
+
+            {(section === 'project' || section === 'education') && (
+              <button
+                onClick={handleEnhanceProject}
+                disabled={loading}
+                className="btn-premium w-full py-3.5 text-xs flex items-center justify-center gap-2 group/btn"
+              >
+                <Zap size={14} className="group-hover/btn:scale-110 transition-transform" />
+                <span>Optimize Impact with AI</span>
+              </button>
+            )}
+
+            {section === 'skills' && (
+              <button
+                onClick={handleSuggestSkills}
+                disabled={loading}
+                className="btn-premium w-full py-3.5 text-xs flex items-center justify-center gap-2 group/btn text-purple-600"
+              >
+                <Lightbulb size={14} className="group-hover/btn:animate-pulse transition-transform" />
+                <span>Discover High-Performing Skills</span>
+              </button>
+            )}
+          </motion.div>
+        ) : suggestion ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="p-5 bg-white/70 dark:bg-slate-900/70 border border-emerald-100 dark:border-emerald-900/30 rounded-2xl shadow-inner relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 p-1 bg-emerald-500 text-white rounded-bl-xl shadow-md">
+              <Sparkles size={10} />
+            </div>
+            
+            <p className="text-sm text-slate-700 dark:text-slate-300 whitespace-pre-wrap leading-relaxed font-medium italic">
+              "{suggestion}"
+            </p>
+            
+            <div className="flex gap-3 mt-5">
+              <button
+                onClick={applyText}
+                className="flex-grow bg-emerald-600 hover:bg-emerald-700 text-white py-2.5 rounded-xl text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-600/20"
+              >
+                <Check size={14} />
+                Apply changes
+              </button>
+              <button
+                onClick={() => setSuggestion(null)}
+                className="px-4 bg-slate-100 dark:bg-slate-800 text-slate-500 hover:text-red-500 rounded-xl transition-all"
+                title="Discard"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-4"
+          >
+            <div className="flex flex-wrap gap-2">
+              {skillsList.map((skill, index) => (
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  key={index}
+                  onClick={() => addSkill(skill)}
+                  className="px-3 py-1.5 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 rounded-xl text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 hover:bg-indigo-600 hover:text-white transition-all"
+                >
+                  <Plus size={10} />
+                  {skill}
+                </motion.button>
+              ))}
+            </div>
+            <div className="flex items-center justify-between border-t border-indigo-50 dark:border-indigo-900/20 pt-3 mt-2">
+              <p className="text-[10px] font-black uppercase text-indigo-400">Click to add to your list</p>
+              <button 
+                onClick={() => setSkillsList([])} 
+                className="text-[10px] font-black uppercase text-slate-400 hover:text-red-500 transition-colors flex items-center gap-1"
+              >
+                <RefreshCcw size={10} />
+                Refresh
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

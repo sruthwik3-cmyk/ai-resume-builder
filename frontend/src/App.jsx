@@ -12,6 +12,7 @@ import Dashboard from './pages/Dashboard'
 import MyResumes from './pages/MyResumes'
 import Profile from './pages/Profile'
 import Templates from './pages/Templates'
+import CoverLetterGenerator from './pages/CoverLetterGenerator'
 import ResumeBuilder from './pages/ResumeBuilder'
 import NotFound from './pages/NotFound'
 
@@ -30,6 +31,7 @@ function App() {
             {/* Dashboard and Core Routes */}
             <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
             <Route path="/resumes" element={<ProtectedRoute><MyResumes /></ProtectedRoute>} />
+            <Route path="/cover-letter" element={<ProtectedRoute><CoverLetterGenerator /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
             <Route path="/builder" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
