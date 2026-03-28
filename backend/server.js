@@ -40,10 +40,12 @@ app.use(express.json());
 import authRoutes from './routes/authRoutes.js';
 import resumeRoutes from './routes/resumeRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
+import newsletterRoutes from './routes/newsletterRoutes.js';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/resumes', resumeRoutes);
 app.use('/api/ai', aiRoutes);
+app.use('/api/newsletter', newsletterRoutes);
 
 app.get('/', (req, res) => {
   res.send('AI Resume Builder API is running');
