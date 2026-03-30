@@ -1,6 +1,7 @@
 import { createObjectCsvWriter } from 'csv-writer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 
 /**
  * Export Service for CareerCraft AI
@@ -8,7 +9,7 @@ import fs from 'fs';
  */
 
 export const generateJobCsv = async (taskId, results) => {
-  const exportsDir = path.join(process.cwd(), 'tmp', 'exports');
+  const exportsDir = path.join(os.tmpdir(), 'exports');
   
   if (!fs.existsSync(exportsDir)) {
     fs.mkdirSync(exportsDir, { recursive: true });
