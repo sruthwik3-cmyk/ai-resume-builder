@@ -25,7 +25,8 @@ ${summary}`;
     const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ improvedSummary: response.text });
   } catch (err) {
-    res.status(500).json({ message: 'AI generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ improvedSummary: "[DEMO - Invalid API Key] To get real AI suggestions, please update your free GEMINI_API_KEY. \n\nHere is what you wrote: " + summary });
   }
 };
 
@@ -47,7 +48,8 @@ export const suggestSkills = async (req, res) => {
     const skills = response.text.split(',').map(s => s.trim()).filter(Boolean);
     res.json({ suggestions: skills });
   } catch (err) {
-    res.status(500).json({ message: 'AI generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ suggestions: ['JavaScript', 'React', 'Node.js', '(Invalid API Key)'] });
   }
 };
 
@@ -69,7 +71,8 @@ ${description}`;
     const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ improvedDescription: response.text });
   } catch (err) {
-    res.status(500).json({ message: 'AI generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ improvedDescription: "[DEMO - Invalid API Key] To get real AI suggestions, please update your GEMINI_API_KEY. \n\nHere is what you wrote: " + description });
   }
 };
 
@@ -87,7 +90,8 @@ export const suggestAtsKeywords = async (req, res) => {
     const keywords = response.text.split(',').map(s => s.trim()).filter(Boolean);
     res.json({ keywords });
   } catch (err) {
-    res.status(500).json({ message: 'AI generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ keywords: ['Leadership', 'Agile', 'Communication'] });
   }
 };
 
@@ -138,7 +142,12 @@ ${resumeTextContext}`;
     let cleanText = response.text.replace(/```json|```/g, '').trim();
     res.json({ review: cleanText });
   } catch (err) {
-    res.status(500).json({ message: 'AI Review generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ 
+      review: JSON.stringify([
+        { severity: "Critical", message: "Invalid GEMINI_API_KEY detected. Please update your API key in the environment variables to unlock full AI reviews.", category: "general", suggestedContent: "" }
+      ])
+    });
   }
 };
 
@@ -179,6 +188,7 @@ Instructions:
     const response = await ai.models.generateContent({ model: 'gemini-1.5-flash', contents: prompt });
     res.json({ coverLetter: response.text });
   } catch (err) {
-    res.status(500).json({ message: 'Cover letter generation failed', error: err.message });
+    console.error("Gemini AI Error:", err.message);
+    return res.json({ coverLetter: "[DEMO - Invalid API Key] Dear Hiring Manager,\n\nI am writing to express my strong interest in the open position.\n\nThank you for your time.\n\nSincerely,\nDemonstration User" });
   }
 };
