@@ -1,5 +1,3 @@
-import { chromium } from 'playwright';
-
 /**
  * Playwright Service for Job Automation in CareerCraft AI.
  * Includes mock data fallback for reliable UI testing.
@@ -14,6 +12,9 @@ export const runJobSearch = async (parsedCommand) => {
       console.log(`[MOCK] Searching ${jobRole} in ${location} on ${platform}...`);
       return mockJobResults(jobRole, location, platform, limit);
     }
+
+    // Dynamically import playwright only if we are actually using it
+    const { chromium } = await import('playwright');
 
     const browser = await chromium.launch({ headless: true });
     const context = await browser.newContext();
