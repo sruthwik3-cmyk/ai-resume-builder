@@ -1,0 +1,251 @@
+Build a full-stack, production-style web application called “AI Resume Builder and Career Assistant”.
+
+Tech stack:
+- Frontend: React.js with Vite
+- Styling: Tailwind CSS
+- Routing: React Router DOM
+- Backend: Node.js + Express.js
+- Database: MongoDB with Mongoose
+- Authentication: JWT + bcrypt
+- PDF Export: html2pdf.js or jsPDF
+- State management: React Context API or Zustand
+- Forms: React Hook Form
+- Icons: Lucide React
+- Animations: Framer Motion
+
+Project goal:
+Create a modern, responsive AI-powered resume builder website where users can register, log in, create resumes, edit resumes, preview resumes live, choose resume templates, and download resumes as PDF. Also include AI-assisted features such as improving resume summary, suggesting skills for a selected job role, and improving project descriptions.
+
+Requirements:
+1. Create a beautiful modern UI with responsive design for desktop, tablet, and mobile.
+2. Use clean folder structure for frontend and backend.
+3. Write clean, modular, maintainable code.
+4. Use reusable React components.
+5. Include proper validation and error handling.
+6. Use environment variables for secrets and API keys.
+7. Add loading states, toast notifications, and empty states.
+8. Add dark mode toggle.
+9. Use realistic dummy data where needed.
+10. Include comments in important parts of code.
+
+Frontend Pages Required:
+1. Home Page
+   - Hero section
+   - Features section
+   - Resume templates preview section
+   - AI features section
+   - CTA section
+   - Footer
+
+2. Authentication Pages
+   - Login page
+   - Signup page
+
+3. User Dashboard
+   - Welcome card
+   - Quick stats (number of resumes created, last updated)
+   - Buttons to create new resume and manage resumes
+
+4. My Resumes Page
+   - Show saved resumes in card layout
+   - Edit button
+   - Delete button
+   - Duplicate button
+   - Preview button
+
+5. Resume Builder Page
+   Create a left-side multi-section form and right-side live preview.
+   Form sections:
+   - Personal Information
+   - Professional Summary
+   - Education
+   - Skills
+   - Projects
+   - Experience / Internship
+   - Certifications
+   - Achievements
+   - Languages
+   - Social Links
+   - Hobbies (optional)
+
+   Each section should support add / edit / delete entries dynamically.
+
+6. Resume Templates Page
+   - Show at least 4 modern resume templates
+   - Let user select a template
+   - Apply selected template to preview and PDF
+
+7. Profile Page
+   - Edit profile details
+   - Change password
+   - Upload profile photo
+
+8. 404 Not Found Page
+
+Core Features Required:
+1. User Authentication
+   - Signup
+   - Login
+   - Logout
+   - Protected routes
+   - Store JWT securely
+
+2. Resume CRUD
+   - Create resume
+   - Read resume
+   - Update resume
+   - Delete resume
+
+3. Live Resume Preview
+   - As the user types in the form, the preview updates instantly
+   - Preview should reflect selected template
+
+4. PDF Download
+   - Download the resume as PDF
+   - Ensure printable clean layout
+
+5. Template System
+   - Minimum 4 templates:
+     - Modern Professional
+     - Minimal Clean
+     - Creative Sidebar
+     - ATS Friendly
+
+6. AI Features
+   Create an AI Assistant panel in the Resume Builder page.
+
+   AI tools to include:
+   a) Improve Summary
+      - User enters raw summary
+      - AI rewrites it professionally
+
+   b) Suggest Skills by Job Role
+      - User enters role like “Frontend Developer”, “Java Developer”, “Data Analyst”
+      - AI returns relevant technical and soft skills
+
+   c) Improve Project Description
+      - User enters simple project text
+      - AI rewrites it into strong resume-friendly bullet points
+
+   d) ATS Keyword Suggestions
+      - Based on selected role, suggest keywords to include in the resume
+
+   Important:
+   If no real AI API key is available, create a mock AI service with realistic pre-defined intelligent responses.
+   Structure the code so real OpenAI or Gemini API can be plugged in later easily.
+
+Backend API Requirements:
+Create Express APIs for:
+- Auth
+  - POST /api/auth/register
+  - POST /api/auth/login
+  - GET /api/auth/me
+
+- Resume
+  - POST /api/resumes
+  - GET /api/resumes
+  - GET /api/resumes/:id
+  - PUT /api/resumes/:id
+  - DELETE /api/resumes/:id
+
+- AI
+  - POST /api/ai/improve-summary
+  - POST /api/ai/suggest-skills
+  - POST /api/ai/improve-project
+  - POST /api/ai/ats-keywords
+
+Database Models:
+1. User
+   - name
+   - email
+   - password
+   - avatar
+   - createdAt
+
+2. Resume
+   - userId
+   - title
+   - personalInfo
+   - summary
+   - education[]
+   - skills[]
+   - projects[]
+   - experience[]
+   - certifications[]
+   - achievements[]
+   - languages[]
+   - socialLinks
+   - hobbies[]
+   - selectedTemplate
+   - createdAt
+   - updatedAt
+
+UI/UX Requirements:
+- Use a clean modern SaaS-style interface
+- Soft shadows, rounded cards, gradients, glassmorphism where appropriate
+- Sidebar navigation for logged-in pages
+- Sticky live preview panel
+- Beautiful buttons and forms
+- Smooth transitions and animations
+- Good typography and spacing
+- Use Tailwind CSS properly
+- Add skeleton loaders and empty states
+
+Extra Requirements:
+- Add search/filter on My Resumes page
+- Add auto-save draft functionality
+- Add resume completion progress bar
+- Add “last saved” indicator
+- Add toast notifications for save, delete, update, login, etc.
+- Add form validation for all required fields
+- Add confirm modal before delete
+- Add local storage backup draft support
+- Add responsive navbar and footer
+- Add role-based skill suggestion examples
+- Add sample resume autofill button for testing/demo
+
+Code Quality:
+- Separate frontend and backend folders
+- Use .env.example files
+- Include README.md with setup instructions
+- Make code beginner-friendly but professional
+- Ensure app runs properly without build errors
+- Avoid placeholder junk code
+- Do not leave incomplete TODOs
+- Make all imports correct
+- Make the project fully runnable
+
+Folder Structure:
+Create proper folders like:
+frontend/
+backend/
+
+Frontend suggested structure:
+src/
+  components/
+  pages/
+  layouts/
+  hooks/
+  context/
+  services/
+  utils/
+  data/
+  templates/
+
+Backend suggested structure:
+server/
+  config/
+  controllers/
+  routes/
+  middleware/
+  models/
+  services/
+  utils/
+
+Final Output:
+Generate the complete project code step by step in a clean and organized way.
+Start by creating the folder structure, then backend, then frontend, then integration, then final polish.
+Also provide setup instructions to run locally in VS Code.
+
+Important:
+Make this project look like a real portfolio-ready final year / hackathon-quality web application, not a basic beginner CRUD app.

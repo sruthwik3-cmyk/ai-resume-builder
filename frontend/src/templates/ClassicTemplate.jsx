@@ -13,16 +13,27 @@ const ClassicTemplate = ({ data, preview = false }) => {
       style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}
     >
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-5">
-        <h1 className={`${nameFs} font-normal text-slate-900 uppercase tracking-tight mb-1`}>
-          {data.personalInfo?.firstName} {data.personalInfo?.lastName}
-        </h1>
-        <div className={`flex flex-wrap justify-center items-center gap-x-3 gap-y-1 ${subFs} text-slate-600 italic font-sans`}>
-          {data.personalInfo?.address && <span>{data.personalInfo.address}</span>}
-          {data.personalInfo?.phone && <span>• {data.personalInfo.phone}</span>}
-          {data.personalInfo?.email && <span>• {data.personalInfo.email}</span>}
-          {data.socialLinks?.linkedin && <span>• {data.socialLinks.linkedin.replace('https://', '')}</span>}
-          {data.socialLinks?.github && <span>• {data.socialLinks.github.replace('https://', '')}</span>}
+      <header className={`mb-5 flex items-center gap-8 ${data.personalInfo?.photo ? 'text-left' : 'text-center justify-center'}`}>
+        {data.personalInfo?.photo && (
+          <div className="shrink-0">
+            <div className={`${preview ? 'w-24 h-24' : 'w-28 h-28'} border-2 border-slate-900 p-1 bg-white shadow-sm`}>
+              <div className="w-full h-full overflow-hidden">
+                <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover" />
+              </div>
+            </div>
+          </div>
+        )}
+        <div className="flex-1">
+          <h1 className={`${nameFs} font-normal text-slate-900 uppercase tracking-tight mb-1`}>
+            {data.personalInfo?.firstName} {data.personalInfo?.lastName}
+          </h1>
+          <div className={`flex flex-wrap ${data.personalInfo?.photo ? 'justify-start' : 'justify-center'} items-center gap-x-3 gap-y-1 ${subFs} text-slate-600 italic font-sans`}>
+            {data.personalInfo?.address && <span>{data.personalInfo.address}</span>}
+            {data.personalInfo?.phone && <span>• {data.personalInfo.phone}</span>}
+            {data.personalInfo?.email && <span>• {data.personalInfo.email}</span>}
+            {data.socialLinks?.linkedin && <span>• {data.socialLinks.linkedin.replace('https://', '')}</span>}
+            {data.socialLinks?.github && <span>• {data.socialLinks.github.replace('https://', '')}</span>}
+          </div>
         </div>
       </header>
 
@@ -132,6 +143,66 @@ const ClassicTemplate = ({ data, preview = false }) => {
           </div>
         </section>
       )}
+
+      {/* ========= CERTIFICATIONS & ACHIEVEMENTS ========= */}
+      {data.certifications && data.certifications.length > 0 && (
+        <section className="mb-4">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.15em] text-center mb-3 pb-1 border-b-2 border-slate-900 font-sans`}>
+            Certifications
+          </h3>
+          <div className="space-y-2 text-center">
+            {data.certifications.map((cert, index) => (
+              <div key={index}>
+                <span className="font-bold text-slate-900 uppercase tracking-tight">{cert.name}</span>
+                <span className="text-slate-600 italic"> — {cert.issuer} {cert.date ? `(${cert.date})` : ''}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data.achievements && data.achievements.length > 0 && (
+        <section className="mb-4">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.15em] text-center mb-3 pb-1 border-b-2 border-slate-900 font-sans`}>
+            Achievements
+          </h3>
+          <ul className="list-disc list-outside pl-8 text-slate-700 space-y-1 mx-auto max-w-2xl">
+            {data.achievements.map((ach, index) => (
+              <li key={index}><span className="font-semibold">{ach}</span></li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ========= LANGUAGES & HOBBIES ========= */}
+      <div className="grid grid-cols-2 gap-8 mt-6">
+        {data.languages && data.languages.length > 0 && (
+          <section className="mb-4">
+            <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.15em] text-left mb-2 pb-1 border-b-2 border-slate-900 font-sans`}>
+              Languages
+            </h3>
+            <div className="space-y-1">
+              {data.languages.map((lang, index) => (
+                <div key={index} className="flex justify-between items-baseline italic">
+                  <span className="font-bold text-slate-900 not-italic uppercase tracking-tighter">{lang.language}</span>
+                  <span className={`${subFs} text-slate-600 font-sans`}>{lang.proficiency}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {data.hobbies && data.hobbies.length > 0 && (
+          <section className="mb-4">
+            <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.15em] text-left mb-2 pb-1 border-b-2 border-slate-900 font-sans`}>
+              Hobbies
+            </h3>
+            <p className="text-slate-700 italic">
+              {data.hobbies.join(' • ')}
+            </p>
+          </section>
+        )}
+      </div>
     </div>
   );
 };

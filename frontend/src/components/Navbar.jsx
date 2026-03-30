@@ -51,6 +51,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Dashboard', path: '/dashboard' },
     { name: 'My Resumes', path: '/resumes' },
+    { name: 'Automation', path: '/automation' },
     { name: 'Cover Letter', path: '/cover-letter', icon: <Sparkles size={14} className="text-amber-500" /> },
   ];
 
@@ -75,7 +76,7 @@ const Navbar = () => {
               className="font-bold text-xl tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 dark:from-white dark:to-slate-300"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
-              AI Resume <span className="text-indigo-600 dark:text-indigo-400">Pro</span>
+              CareerCraft <span className="text-indigo-600 dark:text-indigo-400">AI</span>
             </span>
           </Link>
 

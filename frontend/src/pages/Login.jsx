@@ -80,7 +80,7 @@ const Login = () => {
             <div className="bg-indigo-600 p-2 rounded-xl text-white shadow-lg">
               <ShieldCheck size={24} />
             </div>
-            <span className="font-bold text-2xl tracking-tight dark:text-white">AI Resume Pro</span>
+            <span className="font-bold text-2xl tracking-tight dark:text-white">CareerCraft AI</span>
           </Link>
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">
             {isResetMode ? 'Reset Password' : 'Welcome Back'}
@@ -213,7 +213,7 @@ const Login = () => {
 
           <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
             <p className="text-sm font-bold text-slate-500 dark:text-slate-400">
-              New to AI Resume Pro?{' '}
+              New to CareerCraft AI?{' '}
               <Link to="/signup" className="text-indigo-600 hover:text-indigo-500 hover:underline underline-offset-4 decoration-2 transition-all">
                 Create an account
               </Link>

@@ -41,14 +41,16 @@ import authRoutes from './routes/authRoutes.js';
 import resumeRoutes from './routes/resumeRoutes.js';
 import aiRoutes from './routes/aiRoutes.js';
 import newsletterRoutes from './routes/newsletterRoutes.js';
+import automationRoutes from './routes/automationRoutes.js';
 
 app.use('/api/auth', authRoutes);
 app.use('/api/resumes', resumeRoutes);
 app.use('/api/ai', aiRoutes);
 app.use('/api/newsletter', newsletterRoutes);
+app.use('/api/automation', automationRoutes);
 
 app.get('/', (req, res) => {
-  res.send('AI Resume Builder API is running');
+  res.send('CareerCraft AI API is running');
 });
 
 const PORT = process.env.PORT || 5000;

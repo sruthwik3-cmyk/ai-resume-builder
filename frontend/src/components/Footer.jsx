@@ -42,9 +42,9 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: <Twitter size={20} />, href: "https://twitter.com/airesumepro", color: "hover:text-sky-500", label: "Twitter" },
-    { icon: <Github size={20} />, href: "https://github.com/airesumepro", color: "hover:text-slate-900 dark:hover:text-white", label: "GitHub" },
-    { icon: <Linkedin size={20} />, href: "https://linkedin.com/company/airesumepro", color: "hover:text-blue-700", label: "LinkedIn" }
+    { icon: <Twitter size={20} />, href: "https://twitter.com/careercraftai", color: "hover:text-sky-500", label: "Twitter" },
+    { icon: <Github size={20} />, href: "https://github.com/careercraftai", color: "hover:text-slate-900 dark:hover:text-white", label: "GitHub" },
+    { icon: <Linkedin size={20} />, href: "https://linkedin.com/company/careercraftai", color: "hover:text-blue-700", label: "LinkedIn" }
   ];
 
   return (
@@ -59,7 +59,7 @@ const Footer = () => {
                 <FileText size={24} />
               </div>
               <span className="font-black text-2xl tracking-tighter" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                AI Resume <span className="text-indigo-600">Pro</span>
+                CareerCraft <span className="text-indigo-600">AI</span>
               </span>
             </div>
             <p className="text-slate-500 dark:text-slate-400 font-bold text-sm leading-relaxed mb-10 italic">
@@ -87,7 +87,7 @@ const Footer = () => {
             <h4 className="font-black text-slate-900 dark:text-white mb-8 uppercase tracking-[0.2em] text-[10px]">Product</h4>
             <ul className="space-y-5 text-sm font-bold text-slate-500 dark:text-slate-400">
               <li><Link to="/builder" className="hover:text-indigo-600 transition-colors">Resume Studio</Link></li>
-              <li><Link to="/dashboard" className="hover:text-indigo-600 transition-colors">Letter Studio</Link></li>
+              <li><Link to="/automation" className="hover:text-indigo-600 transition-colors">Automation Studio</Link></li>
               <li><Link to="/templates" className="hover:text-indigo-600 transition-colors">Asset Library</Link></li>
               <li><Link to="/dashboard" className="hover:text-indigo-600 transition-colors">AI Audit</Link></li>
             </ul>
@@ -163,7 +163,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-slate-100 dark:border-slate-900 pt-16 flex flex-col md:flex-row justify-between items-center text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-          <p>&copy; {new Date().getFullYear()} AI Resume Pro Studio. Engineered for the future.</p>
+          <p>&copy; {new Date().getFullYear()} CareerCraft AI. Engineered for the future.</p>
           <div className="flex items-center gap-8 mt-6 md:mt-0">
             <a href="#" className="hover:text-indigo-600 transition-colors">Privacy</a>
             <a href="#" className="hover:text-indigo-600 transition-colors">Terms</a>

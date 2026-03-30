@@ -1,6 +1,6 @@
-# 🚀 AI Resume Pro Studio | Premium AI Career Studio
+# 🚀 CareerCraft AI | Resume Builder & Browser Automation Career Assistant
 
-**The ultimate digital workspace for high-impact careers.** AI Resume Pro Studio combines Gemini 2.5 Flash intelligence with a world-class, "Silicon Valley" design system to automate your path to the world's most innovative companies.
+**The ultimate digital workspace for high-impact careers.** CareerCraft AI combines Gemini 1.5 Flash intelligence with a world-class, "Silicon Valley" design system to automate your path to the world's most innovative companies.
 
 ![Premium SaaS Studio Showcase](C:/Users/ADMIN/.gemini/antigravity/brain/7c36d941-c505-443a-82c8-307a84a35414/premium_dashboard_final_v2_1774579044458.png)
 

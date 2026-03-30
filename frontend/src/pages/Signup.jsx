@@ -57,7 +57,7 @@ const Signup = () => {
             <div className="bg-indigo-600 p-2 rounded-xl text-white shadow-lg">
               <ShieldCheck size={24} />
             </div>
-            <span className="font-bold text-2xl tracking-tight dark:text-white">AI Resume Pro</span>
+            <span className="font-bold text-2xl tracking-tight dark:text-white">CareerCraft AI</span>
           </Link>
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Create Account</h2>
           <p className="text-slate-500 dark:text-slate-400 font-medium">Join 50,000+ professionals building their future.</p>

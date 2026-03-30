@@ -46,7 +46,7 @@ const NotFound = () => {
         transition={{ delay: 1, duration: 1 }}
         className="mt-12 text-slate-400 text-sm font-medium"
       >
-        Need help? <a href="mailto:support@airesumepro.io" className="text-indigo-500 hover:underline">Contact Support</a>
+        Need help? <a href="mailto:support@careercraftai.io" className="text-indigo-500 hover:underline">Contact Support</a>
       </motion.div>
     </div>
   );

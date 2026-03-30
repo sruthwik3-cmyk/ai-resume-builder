@@ -15,6 +15,13 @@ const CreativeTemplate = ({ data, preview = false }) => {
     >
       {/* ========= LEFT SIDEBAR ========= */}
       <div className={`w-[35%] bg-slate-900 text-white ${preview ? 'p-5' : 'p-8'} flex flex-col shrink-0`}>
+        {data.personalInfo?.photo && (
+          <div className="mb-8">
+            <div className={`${preview ? 'w-24 h-24' : 'w-36 h-36'} rounded-2xl border-4 border-indigo-500/30 overflow-hidden bg-slate-800 shadow-2xl transition-transform hover:scale-105 duration-300`}>
+              <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        )}
         
         {/* Name & Title */}
         <div className="mb-6">
@@ -155,6 +162,37 @@ const CreativeTemplate = ({ data, preview = false }) => {
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* Certifications */}
+        {data.certifications && data.certifications.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-wider mb-3 border-b border-slate-200 pb-1`}>
+              Certifications
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {data.certifications.map((cert, index) => (
+                <div key={index} className="bg-slate-50 p-2.5 rounded-lg border-l-2 border-indigo-500">
+                  <p className="font-bold text-slate-800 leading-tight">{cert.name}</p>
+                  <p className={`${subFs} text-slate-500`}>{cert.issuer} {cert.date ? `| ${cert.date}` : ''}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Achievements */}
+        {data.achievements && data.achievements.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-wider mb-3 border-b border-slate-200 pb-1`}>
+              Achievements
+            </h3>
+            <ul className="list-disc list-outside pl-4 text-slate-600 space-y-1.5 leading-relaxed">
+              {data.achievements.map((ach, index) => (
+                <li key={index}><span className="font-medium text-slate-800">{ach}</span></li>
+              ))}
+            </ul>
           </section>
         )}
       </div>

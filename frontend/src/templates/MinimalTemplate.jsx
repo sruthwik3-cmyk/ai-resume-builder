@@ -13,7 +13,14 @@ const MinimalTemplate = ({ data, preview = false }) => {
       style={{ fontFamily: "'Georgia', 'Cambria', serif" }}
     >
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-6">
+      <header className="text-center mb-6 relative">
+        {data.personalInfo?.photo && (
+          <div className="absolute top-0 right-0">
+            <div className={`${preview ? 'w-16 h-16' : 'w-24 h-24'} rounded-full border border-slate-200 overflow-hidden bg-slate-50 shadow-sm`}>
+              <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+            </div>
+          </div>
+        )}
         <h1 className={`${nameFs} font-normal text-slate-900 tracking-wide uppercase mb-1`}>
           {data.personalInfo?.firstName} {data.personalInfo?.lastName}
         </h1>
@@ -138,6 +145,64 @@ const MinimalTemplate = ({ data, preview = false }) => {
               </div>
             ))}
           </div>
+        </section>
+      )}
+
+      {/* ========= CERTIFICATIONS & ACHIEVEMENTS ========= */}
+      {data.certifications && data.certifications.length > 0 && (
+        <section className="mb-5">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+            Certifications
+          </h3>
+          <div className="space-y-2 text-center">
+            {data.certifications.map((cert, index) => (
+              <div key={index}>
+                <span className="font-bold text-slate-900">{cert.name}</span>
+                <span className="text-slate-500 italic ml-2">— {cert.issuer} {cert.date ? `(${cert.date})` : ''}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data.achievements && data.achievements.length > 0 && (
+        <section className="mb-5 text-center">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] text-center mb-3 pb-1 border-b border-slate-200`}>
+            Achievements
+          </h3>
+          <div className="max-w-xl mx-auto space-y-1">
+            {data.achievements.map((ach, index) => (
+              <p key={index} className="text-slate-600">• {ach}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ========= LANGUAGES & HOBBIES ========= */}
+      {data.languages && data.languages.length > 0 && (
+        <section className="mb-5 text-center">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] mb-3 pb-1 border-b border-slate-200`}>
+            Languages
+          </h3>
+          <p className="text-slate-600">
+            {data.languages.map((lang, index) => (
+              <span key={index}>
+                {index > 0 && '  •  '}
+                {lang.language} ({lang.proficiency})
+              </span>
+            ))}
+          </p>
+        </section>
+      )}
+
+      {data.hobbies && data.hobbies.length > 0 && (
+        <section className="mb-5 text-center">
+          <h3 className={`${headingFs} font-bold text-slate-900 uppercase tracking-[0.2em] mb-3 pb-1 border-b border-slate-200`}>
+            Hobbies
+          </h3>
+          <p className="text-slate-500 italic">
+            {data.hobbies.join('  •  ')}
+          </p>
         </section>
       )}
     </div>

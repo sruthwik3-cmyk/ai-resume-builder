@@ -80,8 +80,8 @@ const Dashboard = () => {
             },
             { 
               icon: <Zap size={24} />, 
-              label: "AI Enhancements", 
-              value: "14", 
+              label: "Automation Tasks", 
+              value: "8", 
               gradient: "from-amber-500 to-orange-600", 
               trend: "Boosted visibility" 
             }
@@ -132,75 +132,98 @@ const Dashboard = () => {
             <div className="w-10 h-10 border-4 border-indigo-600/20 border-t-indigo-600 rounded-full animate-spin"></div>
             <span className="text-[10px] font-black text-slate-400 tracking-widest animate-pulse uppercase">Syncing Dashboard</span>
           </div>
-        ) : resumes.length === 0 ? (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="glass-card p-24 rounded-[3.5rem] text-center border-dashed border-2 border-slate-200 dark:border-slate-800 flex flex-col items-center"
-          >
-            <div className="w-24 h-24 bg-slate-50 dark:bg-slate-900/50 rounded-[2.5rem] flex items-center justify-center mb-8 shadow-inner">
-              <Plus size={48} className="text-slate-300 dark:text-slate-600" />
-            </div>
-            <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4">No Resumes Found</h3>
-            <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-sm font-medium">Your creative studio is ready. Let's start building your next big career move.</p>
-            <Link
-              to="/builder"
-              className="btn-premium px-12 py-5 text-lg shadow-2xl shadow-indigo-600/30"
-            >
-              Start New Project
-            </Link>
-          </motion.div>
         ) : (
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {resumes.slice(0, 3).map((resume, idx) => (
-              <motion.div 
-                key={resume._id} 
-                variants={itemVariants}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="glass-card group rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative border-none"
-              >
-                <div className="bg-slate-50 dark:bg-slate-900/80 h-52 flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-grid-slate-200/50 dark:bg-grid-slate-700/20 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
-                  <FileText size={70} className="text-slate-200 dark:text-slate-800 transition-transform group-hover:scale-110 duration-700" />
-                  
-                  <div className="absolute inset-0 bg-indigo-900/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center z-20">
-                    <Link to={`/builder/${resume._id}`} className="btn-premium px-6 py-2.5 text-xs">
-                      Resume Studio
-                    </Link>
-                  </div>
-                </div>
-                <div className="p-8 pb-10">
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="font-extrabold text-xl truncate text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                      {resume.title || "Elite Professional"}
-                    </h3>
-                  </div>
-                  <div className="flex items-center gap-3 text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] mb-8">
-                    <Clock size={12} />
-                    Modified {new Date(resume.updatedAt).toLocaleDateString()}
-                  </div>
-                  <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Layout</span>
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{resume.selectedTemplate || 'Modern'} PRO</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {resumes.length > 0 ? (
+              resumes.slice(0, 2).map((resume, idx) => (
+                <motion.div 
+                  key={resume._id} 
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: idx * 0.1 }}
+                  whileHover={{ y: -10 }}
+                  className="glass-card group rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative border-none"
+                >
+                  <div className="bg-slate-50 dark:bg-slate-900/80 h-52 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-grid-slate-200/50 dark:bg-grid-slate-700/20 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
+                    <FileText size={70} className="text-slate-200 dark:text-slate-800 transition-transform group-hover:scale-110 duration-700" />
+                    
+                    <div className="absolute inset-0 bg-indigo-900/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center z-20">
+                      <Link to={`/builder/${resume._id}`} className="btn-premium px-6 py-2.5 text-xs">
+                        Resume Studio
+                      </Link>
                     </div>
-                    <Link
-                      to={`/builder/${resume._id}`}
-                      className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-indigo-600 shadow-sm border border-slate-100 dark:border-slate-700 hover:scale-110 transition-transform"
-                    >
-                      <ArrowRight size={18} />
-                    </Link>
                   </div>
+                  <div className="p-8 pb-10">
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="font-extrabold text-xl truncate text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                        {resume.title || "Elite Professional"}
+                      </h3>
+                    </div>
+                    <div className="flex items-center gap-3 text-slate-400 font-bold text-[10px] uppercase tracking-[0.2em] mb-8">
+                      <Clock size={12} />
+                      Modified {new Date(resume.updatedAt).toLocaleDateString()}
+                    </div>
+                    <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-800">
+                      <div className="flex flex-col">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-tighter">Layout</span>
+                        <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{resume.selectedTemplate || 'Modern'} PRO</span>
+                      </div>
+                      <Link
+                        to={`/builder/${resume._id}`}
+                        className="w-10 h-10 rounded-xl bg-white dark:bg-slate-800 flex items-center justify-center text-indigo-600 shadow-sm border border-slate-100 dark:border-slate-700 hover:scale-110 transition-transform"
+                      >
+                        <ArrowRight size={18} />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              ))
+            ) : (
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass-card p-12 rounded-[3.5rem] text-center border-dashed border-2 border-slate-200 dark:border-slate-800 flex flex-col items-center col-span-1 md:col-span-2"
+              >
+                <div className="w-20 h-20 bg-slate-50 dark:bg-slate-900/50 rounded-[2.5rem] flex items-center justify-center mb-6 shadow-inner">
+                  <Plus size={32} className="text-slate-300 dark:text-slate-600" />
                 </div>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Build Your First Resume</h3>
+                <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm font-medium">Your creative studio is ready. Let's start building your next big career move.</p>
+                <Link
+                  to="/builder"
+                  className="btn-premium px-10 py-4 text-sm shadow-2xl"
+                >
+                  Create Project
+                </Link>
               </motion.div>
-            ))}
-          </motion.div>
+            )}
+
+            {/* Automation Quick Access Card */}
+            <motion.div 
+              variants={itemVariants}
+              initial="visible"
+              whileHover={{ y: -10 }}
+              className="glass-card group rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all relative border-none bg-indigo-600 text-white min-h-[350px]"
+            >
+              <div className="p-8 h-full flex flex-col justify-between">
+                <div>
+                  <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                    <Zap size={24} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-black mb-4 tracking-tight leading-tight">Automation<br />Studio</h3>
+                  <p className="text-white/70 font-bold text-sm mb-8 italic">Control the web with AI. Search jobs effortlessly across platforms.</p>
+                </div>
+                <Link 
+                  to="/automation" 
+                  className="w-full py-4 bg-white text-indigo-600 rounded-2xl font-black text-center text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                >
+                  Open Assistant
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         )}
       </div>
     </div>

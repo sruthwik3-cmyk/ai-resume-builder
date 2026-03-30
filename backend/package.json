@@ -1,7 +1,7 @@
 {
-  "name": "backend",
+  "name": "careercraft-ai-backend",
   "version": "1.0.0",
-  "description": "AI Resume Builder Backend",
+  "description": "CareerCraft AI - Resume Builder & Browser Automation Career Assistant",
   "main": "server.js",
   "type": "module",
   "scripts": {

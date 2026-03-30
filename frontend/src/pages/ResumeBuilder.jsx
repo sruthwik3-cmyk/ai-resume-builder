@@ -5,7 +5,8 @@ import { useResumeContext } from '../context/ResumeContext';
 import { 
   Download, Save, ArrowLeft, Plus, Trash2, LayoutTemplate, 
   User, FileText, Briefcase, GraduationCap, Award, Settings, 
-  Sparkles, Eye, Code, ChevronRight, CheckCircle2, Monitor, ArrowRight, Camera
+  Sparkles, Eye, Code, ChevronRight, CheckCircle2, Monitor, ArrowRight, Camera,
+  Trophy, Globe, Heart
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import toast from 'react-hot-toast';
@@ -51,12 +52,20 @@ const ResumeBuilder = () => {
       skills: [],
       projects: [],
       experience: [],
+      certifications: [],
+      achievements: [],
+      languages: [],
+      hobbies: [],
     }
   });
 
   const { fields: expFields, append: appendExp, remove: removeExp } = useFieldArray({ control, name: 'experience' });
   const { fields: eduFields, append: appendEdu, remove: removeEdu } = useFieldArray({ control, name: 'education' });
   const { fields: projFields, append: appendProj, remove: removeProj } = useFieldArray({ control, name: 'projects' });
+  const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control, name: 'certifications' });
+  const { fields: langFields, append: appendLang, remove: removeLang } = useFieldArray({ control, name: 'languages' });
+  const { fields: achFields, append: appendAch, remove: removeAch } = useFieldArray({ control, name: 'achievements' });
+  const { fields: hobFields, append: appendHob, remove: removeHob } = useFieldArray({ control, name: 'hobbies' });
 
   // Watch entire form for live preview
   const formData = watch();
@@ -179,6 +188,10 @@ const ResumeBuilder = () => {
     { id: 'education', label: 'Education', icon: <GraduationCap size={18} /> },
     { id: 'skills', label: 'Skills', icon: <Award size={18} /> },
     { id: 'projects', label: 'Projects', icon: <Code size={18} /> },
+    { id: 'certifications', label: 'Certifications', icon: <Award size={18} /> },
+    { id: 'achievements', label: 'Achievements', icon: <Trophy size={18} /> },
+    { id: 'languages', label: 'Languages', icon: <Globe size={18} /> },
+    { id: 'hobbies', label: 'Hobbies', icon: <Heart size={18} /> },
     { id: 'design', label: 'Design', icon: <LayoutTemplate size={18} /> },
     { id: 'aireview', label: 'AI Auditor', icon: <Sparkles size={18} className="text-amber-500" /> },
   ];
@@ -592,6 +605,149 @@ const ResumeBuilder = () => {
                       >
                         <Plus size={18} />
                         Add a Project
+                      </button>
+                    </div>
+                  )}
+
+                  {/* CERTIFICATIONS */}
+                  {activeTab === 'certifications' && (
+                    <div className="space-y-6">
+                      {certFields.map((field, index) => (
+                        <motion.div 
+                          key={field.id}
+                          initial={{ opacity: 0, scale: 0.98 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative"
+                        >
+                          <button type="button" onClick={() => removeCert(index)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-red-500 rounded-lg transition-colors">
+                            <Trash2 size={16} />
+                          </button>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
+                            <div className="md:col-span-2">
+                              <label className="block text-xs font-bold mb-1.5 text-slate-500 dark:text-slate-400">Certification Name</label>
+                              <input {...register(`certifications.${index}.name`)} className="input-premium" placeholder="AWS Certified Solutions Architect" />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-bold mb-1.5 text-slate-500 dark:text-slate-400">Issuing Organization</label>
+                              <input {...register(`certifications.${index}.issuer`)} className="input-premium" placeholder="Amazon Web Services" />
+                            </div>
+                            <div>
+                              <label className="block text-xs font-bold mb-1.5 text-slate-500 dark:text-slate-400">Date Issued</label>
+                              <input {...register(`certifications.${index}.date`)} className="input-premium" placeholder="Jan 2024" />
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => appendCert({ name: '', issuer: '', date: '' })}
+                        className="w-full py-4 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-slate-400 font-bold hover:text-indigo-600 hover:border-indigo-400 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Plus size={18} />
+                        Add Certification
+                      </button>
+                    </div>
+                  )}
+
+                  {/* ACHIEVEMENTS */}
+                  {activeTab === 'achievements' && (
+                    <div className="space-y-4">
+                      {achFields.map((field, index) => (
+                        <div key={field.id} className="flex gap-2 items-start">
+                          <div className="flex-grow">
+                            <input 
+                              {...register(`achievements.${index}`)} 
+                              className="input-premium text-sm" 
+                              placeholder="e.g. Reduced server latency by 45% through custom caching" 
+                            />
+                          </div>
+                          <button 
+                            type="button" 
+                            onClick={() => removeAch(index)} 
+                            className="p-3 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-xl transition-all"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => appendAch('')}
+                        className="w-full py-4 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-slate-400 font-bold hover:text-indigo-600 hover:border-indigo-400 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Plus size={18} />
+                        Add Achievement
+                      </button>
+                    </div>
+                  )}
+
+                  {/* LANGUAGES */}
+                  {activeTab === 'languages' && (
+                    <div className="space-y-4">
+                      {langFields.map((field, index) => (
+                        <div key={field.id} className="grid grid-cols-2 gap-3 bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 relative group">
+                          <button 
+                            type="button" 
+                            onClick={() => removeLang(index)} 
+                            className="absolute -top-2 -right-2 p-1.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 hover:text-red-500 rounded-lg shadow-sm opacity-0 group-hover:opacity-100 transition-all"
+                          >
+                            <Trash2 size={14} />
+                          </button>
+                          <div>
+                            <label className="block text-[10px] font-black text-slate-400 uppercase tracking-tighter mb-1 ml-1">Language</label>
+                            <input {...register(`languages.${index}.language`)} className="input-premium text-sm" placeholder="English" />
+                          </div>
+                          <div>
+                            <label className="block text-[10px] font-black text-slate-400 uppercase tracking-tighter mb-1 ml-1">Proficiency</label>
+                            <select {...register(`languages.${index}.proficiency`)} className="input-premium text-sm appearance-none">
+                              <option value="Native">Native</option>
+                              <option value="Fluent">Fluent</option>
+                              <option value="Professional">Professional</option>
+                              <option value="Conversational">Conversational</option>
+                              <option value="Basic">Basic</option>
+                            </select>
+                          </div>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => appendLang({ language: '', proficiency: 'Fluent' })}
+                        className="w-full py-4 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-slate-400 font-bold hover:text-indigo-600 hover:border-indigo-400 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Plus size={18} />
+                        Add Language
+                      </button>
+                    </div>
+                  )}
+
+                  {/* HOBBIES */}
+                  {activeTab === 'hobbies' && (
+                    <div className="space-y-4">
+                      {hobFields.map((field, index) => (
+                        <div key={field.id} className="flex gap-2 items-start">
+                          <div className="flex-grow">
+                            <input 
+                              {...register(`hobbies.${index}`)} 
+                              className="input-premium text-sm" 
+                              placeholder="e.g. Photography, Mountain Biking..." 
+                            />
+                          </div>
+                          <button 
+                            type="button" 
+                            onClick={() => removeHob(index)} 
+                            className="p-3 text-slate-400 hover:text-red-500 rounded-xl transition-all"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => appendHob('')}
+                        className="w-full py-4 border-2 border-dashed border-slate-200 dark:border-slate-700 rounded-xl text-slate-400 font-bold hover:text-indigo-600 hover:border-indigo-400 transition-all flex items-center justify-center gap-2"
+                      >
+                        <Plus size={18} />
+                        Add Hobby
                       </button>
                     </div>
                   )}

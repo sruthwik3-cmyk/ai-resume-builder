@@ -14,6 +14,8 @@ import Profile from './pages/Profile'
 import Templates from './pages/Templates'
 import CoverLetterGenerator from './pages/CoverLetterGenerator'
 import ResumeBuilder from './pages/ResumeBuilder'
+import AutomationAssistant from './pages/AutomationAssistant'
+import AutomationHistory from './pages/AutomationHistory'
 import NotFound from './pages/NotFound'
 
 // Helper component to handle conditional layout
@@ -39,6 +41,8 @@ const AppContent = () => {
           <Route path="/templates" element={<ProtectedRoute><Templates /></ProtectedRoute>} />
           <Route path="/builder" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
           <Route path="/builder/:id" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
+          <Route path="/automation" element={<ProtectedRoute><AutomationAssistant /></ProtectedRoute>} />
+          <Route path="/automation/history" element={<ProtectedRoute><AutomationHistory /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

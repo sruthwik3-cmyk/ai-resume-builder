@@ -61,9 +61,9 @@ const Home = () => {
             variants={itemVariants}
             className="text-5xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.1]"
           >
-            Your Dream Job<br />
+            CareerCraft<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-500 animate-gradient pb-2 block">
-              Starts with AI
+              AI Career Suite
             </span>
           </motion.h1>
 
@@ -71,7 +71,7 @@ const Home = () => {
             variants={itemVariants}
             className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            Create a stunning, ATS-optimized resume in seconds. Our Gemini-powered engine crafts professional sentences, suggests key skills, and reviews your resume for perfection.
+            The all-in-one platform for modern job seekers. Build ATS-optimized resumes and use our **AI Browser Automation** to find and apply for jobs in seconds.
           </motion.p>
 
           <motion.div 
@@ -91,31 +91,29 @@ const Home = () => {
             <Link to="/templates" className="px-10 py-5 text-lg font-bold text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center">
               View Premium Templates
             </Link>
-          </motion.div>      {/* Social Proof / Brands */}
-      <section className="py-20 border-y border-slate-100 dark:border-slate-900 bg-white dark:bg-slate-950/50">
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Social Proof / Brands */}
+      <section className="py-20 border-y border-slate-100 dark:border-slate-900 bg-white dark:bg-slate-950/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] mb-12">Trusted by builders at worldwide leaders</p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-1000">
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-1000 px-4">
             <div className="text-2xl md:text-3xl font-black tracking-tighter">google</div>
             <div className="text-2xl md:text-3xl font-black tracking-tighter italic">META</div>
             <div className="text-2xl md:text-3xl font-black tracking-tighter">amazon</div>
             <div className="text-2xl md:text-3xl font-black tracking-tighter uppercase">netflix</div>
             <div className="text-2xl md:text-3xl font-black tracking-tighter decoration-indigo-600 underline underline-offset-8">AirBnb</div>
           </div>
-        </div>
-      </section>
-
-          <motion.div 
-            variants={itemVariants}
-            className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-900 flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700"
-          >
-            {/* Mock Brand Logos */}
+          
+          <div className="mt-20 pt-10 border-t border-slate-100 dark:border-slate-800/50 flex flex-wrap justify-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-700">
             <div className="font-bold text-2xl tracking-tighter">TECHSTAR</div>
             <div className="font-bold text-2xl tracking-tighter italic text-indigo-500">CLOUDLY</div>
             <div className="font-bold text-2xl tracking-tighter">DATA<span className="text-purple-500">FLOW</span></div>
             <div className="font-bold text-2xl tracking-tighter lowercase underline decoration-indigo-500 underline-offset-4 font-mono">NexGen</div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Stats Section */}
@@ -208,14 +206,14 @@ const Home = () => {
           <div className="grid md:grid-cols-3 gap-12">
             {[
               { 
-                icon: <Sparkles className="text-indigo-600" size={32} />, 
-                title: "AI Writing Hub", 
-                desc: "Gemini-powered engine that crafts professional summaries and bullet points in seconds." 
+                icon: <Zap className="text-amber-500" size={32} />, 
+                title: "Automation Assistant", 
+                desc: "Natural language browser automation to search jobs on LinkedIn, Naukri, and more instantly." 
               },
               { 
-                icon: <Zap className="text-amber-500" size={32} />, 
-                title: "ATS Optimizer", 
-                desc: "Intelligent keyword scanning to ensure your profile passes every automated screen." 
+                icon: <Sparkles className="text-indigo-600" size={32} />, 
+                title: "AI Resume Hub", 
+                desc: "Gemini-powered engine that crafts professional summaries and bullet points in seconds." 
               },
               { 
                 icon: <LayoutTemplate className="text-purple-600" size={32} />, 

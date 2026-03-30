@@ -11,12 +11,16 @@ import { Check, Edit3, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const mockData = {
-  personalInfo: { firstName: 'Jane', lastName: 'Doe', jobTitle: 'Senior Software Architect', email: 'jane.doe@airesumepro.io', phone: '+1 234 567 8900', address: 'San Francisco, CA' },
+  personalInfo: { firstName: 'Jane', lastName: 'Doe', jobTitle: 'Senior Software Architect', email: 'jane.doe@careercraftai.io', phone: '+1 234 567 8900', address: 'San Francisco, CA', photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200' },
   summary: 'Architecting high-performance distributed systems with 10+ years of expertise. Proven track record in scaling cloud infrastructures and leading cross-functional engineering teams to deliver world-class SaaS solutions.',
   education: [{ institution: 'Stanford University', degree: 'M.S.', fieldOfStudy: 'Computer Science', startDate: '2015', endDate: '2017' }],
   experience: [{ title: 'Principal Engineer', company: 'CloudScale AI', location: 'San Francisco', startDate: '2020', endDate: 'Present', current: true, description: 'Designed core microservices architecture handling 1M+ req/sec.\nOptimized database performance by 65% using advanced caching strategies.' }],
   skills: ['System Design', 'React / Next.js', 'Node.js', 'Kubernetes', 'AWS', 'GraphQL'],
   projects: [{ name: 'Enterprise AI Core', description: 'Internal AI platform for automating complex workflow orchestration.', technologies: ['Python', 'TensorFlow', 'Go'] }],
+  certifications: [{ name: 'AWS Certified Solutions Architect - Professional', issuer: 'Amazon Web Services', date: '2023' }, { name: 'Google Cloud Professional Cloud Architect', issuer: 'Google', date: '2022' }],
+  achievements: ['Won Top Engineer of the Year at CloudScale (2022)', 'Increased system availability from 99.9% to 99.99%', 'Mentored 15+ junior developers to senior positions'],
+  languages: [{ language: 'English', proficiency: 'Native' }, { language: 'German', proficiency: 'Professional Working' }, { language: 'French', proficiency: 'Conversational' }],
+  hobbies: ['Competitive Chess', 'Amateur Astronomy', 'Hiking', 'Playing Jazz Piano'],
 };
 
 const templates = [

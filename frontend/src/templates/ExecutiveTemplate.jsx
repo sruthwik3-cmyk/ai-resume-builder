@@ -14,15 +14,24 @@ const ExecutiveTemplate = ({ data, preview = false }) => {
       style={{ fontFamily: "'Georgia', 'Playfair Display', serif" }}
     >
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-6 border-b-2 border-slate-800 pb-5">
-        <h1 className={`${nameFs} font-bold text-slate-900 uppercase tracking-wide mb-1`}>
-          {data.personalInfo?.firstName} {data.personalInfo?.lastName}
-        </h1>
-        {data.personalInfo?.jobTitle && (
-          <p className={`${subFs} font-semibold text-slate-500 uppercase tracking-[0.3em] mb-3 font-sans`}>
-            {data.personalInfo.jobTitle}
-          </p>
+      <header className={`mb-6 border-b-2 border-slate-800 pb-5 flex items-center gap-8 ${data.personalInfo?.photo ? 'text-left' : 'text-center justify-center'}`}>
+        {data.personalInfo?.photo && (
+          <div className="shrink-0">
+            <div className={`${preview ? 'w-24 h-24' : 'w-32 h-32'} rounded-xl border border-slate-200 overflow-hidden bg-slate-50 shadow-md`}>
+              <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
         )}
+        <div className="flex-1">
+          <h1 className={`${nameFs} font-bold text-slate-900 uppercase tracking-wide mb-1`}>
+            {data.personalInfo?.firstName} {data.personalInfo?.lastName}
+          </h1>
+          {data.personalInfo?.jobTitle && (
+            <p className={`${subFs} font-semibold text-slate-500 uppercase tracking-[0.3em] mb-3 font-sans`}>
+              {data.personalInfo.jobTitle}
+            </p>
+          )}
+        </div>
         <div className={`flex flex-wrap justify-center items-center gap-x-4 gap-y-1 ${subFs} text-slate-500 font-sans`}>
           {data.personalInfo?.email && <span>{data.personalInfo.email}</span>}
           {data.personalInfo?.phone && <span>|</span>}
@@ -148,6 +157,66 @@ const ExecutiveTemplate = ({ data, preview = false }) => {
           </div>
         </section>
       )}
+
+      {/* ========= CERTIFICATIONS & ACHIEVEMENTS ========= */}
+      {data.certifications && data.certifications.length > 0 && (
+        <section className="mb-5">
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
+            Certifications
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-2 font-sans">
+            {data.certifications.map((cert, index) => (
+              <div key={index}>
+                <p className="font-bold text-slate-900">{cert.name}</p>
+                <p className={`${subFs} text-slate-500`}>{cert.issuer} {cert.date ? `| ${cert.date}` : ''}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {data.achievements && data.achievements.length > 0 && (
+        <section className="mb-5">
+          <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
+            Achievements
+          </h3>
+          <ul className="list-disc list-outside pl-4 text-slate-600 space-y-1 leading-relaxed font-sans">
+            {data.achievements.map((ach, index) => (
+              <li key={index} className="font-semibold">{ach}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ========= LANGUAGES & HOBBIES ========= */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+        {data.languages && data.languages.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
+              Languages
+            </h3>
+            <div className="space-y-1 font-sans">
+              {data.languages.map((lang, index) => (
+                <div key={index} className="flex justify-between items-center text-sm">
+                  <span className="font-bold text-slate-900">{lang.language}</span>
+                  <span className={`${subFs} text-slate-500 italic uppercase tracking-wider`}>{lang.proficiency}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {data.hobbies && data.hobbies.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-slate-800 uppercase tracking-[0.2em] mb-3 border-b border-slate-200 pb-1 font-sans`}>
+              Hobbies
+            </h3>
+            <p className="text-slate-600 italic font-sans">
+              {data.hobbies.join(' • ')}
+            </p>
+          </section>
+        )}
+      </div>
     </div>
   );
 };

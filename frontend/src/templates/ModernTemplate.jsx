@@ -17,16 +17,24 @@ const ModernTemplate = ({ data, preview = false }) => {
       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-indigo-600 to-blue-500" />
 
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-6 pt-2">
-        <h1 className={`${nameFs} font-bold text-slate-900 tracking-tight mb-1`}>
-          {data.personalInfo?.firstName} {data.personalInfo?.lastName}
-        </h1>
-        {data.personalInfo?.jobTitle && (
-          <p className={`${subFs} font-semibold text-indigo-600 uppercase tracking-[0.2em] mb-3`}>
-            {data.personalInfo.jobTitle}
-          </p>
+      <header className={`mb-6 pt-2 flex items-center gap-6 ${data.personalInfo?.photo ? 'text-left' : 'text-center justify-center'}`}>
+        {data.personalInfo?.photo && (
+          <div className="shrink-0 relative">
+            <div className={`${preview ? 'w-20 h-20' : 'w-28 h-28'} rounded-full border-4 border-indigo-50 dark:border-indigo-900/30 overflow-hidden bg-slate-100 dark:bg-slate-800 shadow-lg`}>
+              <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
         )}
-        
+        <div className="flex-1">
+          <h1 className={`${nameFs} font-bold text-slate-900 tracking-tight mb-1`}>
+            {data.personalInfo?.firstName} {data.personalInfo?.lastName}
+          </h1>
+          {data.personalInfo?.jobTitle && (
+            <p className={`${subFs} font-semibold text-indigo-600 uppercase tracking-[0.2em] mb-3`}>
+              {data.personalInfo.jobTitle}
+            </p>
+          )}
+        </div>
         <div className={`flex flex-wrap justify-center items-center gap-x-4 gap-y-1 ${subFs} text-slate-500`}>
           {data.personalInfo?.email && (
             <span className="flex items-center gap-1">
@@ -183,6 +191,68 @@ const ModernTemplate = ({ data, preview = false }) => {
           </div>
         </section>
       )}
+
+      {/* ========= CERTIFICATIONS & ACHIEVEMENTS ========= */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {data.certifications && data.certifications.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-indigo-600 uppercase tracking-wider mb-2 border-b border-indigo-100 pb-1`}>
+              Certifications
+            </h3>
+            <div className="space-y-2">
+              {data.certifications.map((cert, index) => (
+                <div key={index}>
+                  <p className="font-bold text-slate-800 leading-tight">{cert.name}</p>
+                  <p className={`${subFs} text-slate-500`}>{cert.issuer} {cert.date ? `| ${cert.date}` : ''}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {data.achievements && data.achievements.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-indigo-600 uppercase tracking-wider mb-2 border-b border-indigo-100 pb-1`}>
+              Achievements
+            </h3>
+            <ul className="list-disc list-outside pl-4 text-slate-600 space-y-1 leading-relaxed">
+              {data.achievements.map((ach, index) => (
+                <li key={index}>{ach}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+      </div>
+
+      {/* ========= LANGUAGES & HOBBIES ========= */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {data.languages && data.languages.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-indigo-600 uppercase tracking-wider mb-2 border-b border-indigo-100 pb-1`}>
+              Languages
+            </h3>
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              {data.languages.map((lang, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <span className="font-bold text-slate-800">{lang.language}</span>
+                  <span className={`${subFs} text-indigo-500 font-medium italic`}>({lang.proficiency})</span>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {data.hobbies && data.hobbies.length > 0 && (
+          <section className="mb-5">
+            <h3 className={`${headingFs} font-bold text-indigo-600 uppercase tracking-wider mb-2 border-b border-indigo-100 pb-1`}>
+              Hobbies
+            </h3>
+            <p className="text-slate-600 leading-relaxed italic">
+              {data.hobbies.join(' • ')}
+            </p>
+          </section>
+        )}
+      </div>
     </div>
   );
 };

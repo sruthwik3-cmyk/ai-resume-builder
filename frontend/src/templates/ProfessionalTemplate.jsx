@@ -139,6 +139,31 @@ const ProfessionalTemplate = ({ data, preview = false }) => {
                 </div>
               </section>
             )}
+
+            {/* Languages */}
+            {data.languages && data.languages.length > 0 && (
+              <section>
+                <SidebarHeader title="Languages" />
+                <div className="space-y-2">
+                  {data.languages.map((lang, index) => (
+                    <div key={index} className="flex flex-col">
+                      <span className="text-slate-800 font-bold text-[11px] uppercase tracking-wide">{lang.language}</span>
+                      <span className="text-slate-500 font-medium italic text-[10px]">{lang.proficiency}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Hobbies */}
+            {data.hobbies && data.hobbies.length > 0 && (
+              <section>
+                <SidebarHeader title="Hobbies" />
+                <p className="text-slate-600 italic font-medium leading-relaxed">
+                  {data.hobbies.join(' • ')}
+                </p>
+              </section>
+            )}
           </div>
         </aside>
 
@@ -189,12 +214,74 @@ const ProfessionalTemplate = ({ data, preview = false }) => {
               </section>
             )}
 
+            {/* Projects */}
+            {data.projects && data.projects.length > 0 && (
+              <section>
+                <SectionHeader title="Key Projects" />
+                <div className="space-y-6">
+                  {data.projects.map((proj, index) => (
+                    <div key={index}>
+                      <div className="flex justify-between items-baseline mb-1">
+                        <h4 className="font-black text-slate-900 text-[13px] uppercase tracking-tight">
+                          {proj.name}
+                        </h4>
+                        {proj.link && (
+                          <span className="text-slate-400 font-bold text-[10px] uppercase tracking-widest bg-slate-100 px-2 py-0.5 rounded">
+                            {proj.link.replace('https://', '')}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-slate-600 leading-relaxed italic mb-1.5">{proj.description}</p>
+                      {proj.technologies && proj.technologies.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {proj.technologies.map((tech, i) => (
+                            <span key={i} className="text-[10px] font-black text-slate-500 uppercase tracking-tighter">#{tech}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Certifications */}
+            {data.certifications && data.certifications.length > 0 && (
+              <section>
+                <SectionHeader title="Certifications" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {data.certifications.map((cert, index) => (
+                    <div key={index} className="border-l-4 border-slate-800 pl-4 py-1">
+                      <p className="font-black text-slate-900 text-[12px] uppercase">{cert.name}</p>
+                      <p className="text-slate-500 font-bold text-[10px] tracking-wide uppercase">{cert.issuer} {cert.date ? `| ${cert.date}` : ''}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Achievements */}
+            {data.achievements && data.achievements.length > 0 && (
+              <section>
+                <SectionHeader title="Notable Achievements" />
+                <div className="space-y-3">
+                  {data.achievements.map((ach, index) => (
+                    <div key={index} className="flex gap-4 items-start">
+                      <div className="w-6 h-6 bg-slate-100 rounded flex items-center justify-center shrink-0">
+                        <span className="text-slate-800 font-black text-[10px]">{index + 1}</span>
+                      </div>
+                      <p className="text-slate-600 font-medium leading-tight pt-1">{ach}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* References */}
             <section>
               <SectionHeader title="References" />
               <p className="text-slate-400 italic font-medium">References available upon request</p>
             </section>
-
           </div>
         </main>
       </div>

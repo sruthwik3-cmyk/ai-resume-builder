@@ -1,0 +1,68 @@
+﻿--- CareerCraft AI: Command Parser Test Suite ---
+[1] Standard LinkedIn Search      : Γ¥î FAILED
+    Query: "Search Python developer jobs in Bangalore and save top 10 results"
+    Expected: {
+  platform: 'LinkedIn',
+  jobRole: 'python developer',
+  location: 'Bangalore',
+  limit: 10
+}
+    Actual:   {
+  platform: 'LinkedIn',
+  jobRole: 'python developer',
+  location: 'bangalore and save',
+  limit: 10,
+  taskType: 'search'
+}
+    Fail Reason: Location mismatch
+[2] Internshala Internship        : Γ¥î FAILED
+    Query: "Find React internships in Mumbai on Internshala"
+    Expected: {
+  platform: 'Internshala',
+  jobRole: 'react',
+  location: 'Mumbai',
+  limit: 10
+}
+    Actual:   {
+  platform: 'Internshala',
+  jobRole: 'react',
+  location: 'mumbai on internshala',
+  limit: 10,
+  taskType: 'search'
+}
+    Fail Reason: Location mismatch
+[3] Naukri with Limit             : Γ£à PASSED
+[4] Implicit Platform (Default LinkedIn): Γ£à PASSED
+[5] Case Insensitive Platforms    : Γ¥î FAILED
+    Query: "Search Node.js jobs on linkedin in Delhi"
+    Expected: {
+  platform: 'LinkedIn',
+  jobRole: 'node.js',
+  location: 'Delhi',
+  limit: 10
+}
+    Actual:   {
+  platform: 'LinkedIn',
+  jobRole: 'node.js',
+  location: 'in delhi',
+  limit: 10,
+  taskType: 'search'
+}
+    Fail Reason: Location mismatch
+[6] Custom Limit 'top 20'         : Γ£à PASSED
+[7] Remote Detection              : Γ£à PASSED
+[8] Complex Role with multiple words: Γ£à PASSED
+[9] Empty/Minimal Command         : Γ£à PASSED
+[10] Platform only                 : Γ¥î FAILED
+    Query: "naukri"
+    Expected: { platform: 'Naukri', jobRole: 'jobs', location: 'Remote', limit: 10 }
+    Actual:   {
+  platform: 'Naukri',
+  jobRole: 'Software Engineer',
+  location: 'Remote',
+  limit: 10,
+  taskType: 'search'
+}
+    Fail Reason: Role mismatch
+
+--- Audit Complete ---

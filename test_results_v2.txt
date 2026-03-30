@@ -1,0 +1,26 @@
+﻿Γ¥î FAILED: Standard LinkedIn Search
+   Query: "Search Python developer jobs in Bangalore and save top 10 results"
+   Diff: {
+  platform: 'OK',
+  role: 'OK',
+  location: 'Got bangalore and save, expected Bangalore',
+  limit: 'OK'
+}
+Γ¥î FAILED: Internshala Internship
+   Query: "Find React internships in Mumbai on Internshala"
+   Diff: {
+  platform: 'OK',
+  role: 'OK',
+  location: 'Got mumbai on internshala, expected Mumbai',
+  limit: 'OK'
+}
+Γ¥î FAILED: Case Insensitive
+   Query: "Search Node.js jobs on linkedin in Delhi"
+   Diff: {
+  platform: 'OK',
+  role: 'OK',
+  location: 'Got in delhi, expected Delhi',
+  limit: 'OK'
+}
+
+Found 3 failures.

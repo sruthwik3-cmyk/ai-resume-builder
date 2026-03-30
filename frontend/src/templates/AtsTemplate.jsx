@@ -13,16 +13,25 @@ const AtsTemplate = ({ data, preview = false }) => {
       style={{ fontFamily: "'Arial', 'Helvetica', sans-serif" }}
     >
       {/* ========= HEADER ========= */}
-      <header className="text-center mb-4">
-        <h1 className={`${nameFs} font-bold uppercase tracking-tight text-black mb-1`}>
-          {data.personalInfo?.firstName} {data.personalInfo?.lastName}
-        </h1>
-        <div className={`flex flex-wrap justify-center gap-x-3 gap-y-1 ${subFs} text-black`}>
-          {data.personalInfo?.email && <span>{data.personalInfo.email}</span>}
-          {data.personalInfo?.phone && <span>| {data.personalInfo.phone}</span>}
-          {data.personalInfo?.address && <span>| {data.personalInfo.address}</span>}
-          {data.socialLinks?.linkedin && <span>| {data.socialLinks.linkedin.replace('https://', '')}</span>}
-          {data.socialLinks?.github && <span>| {data.socialLinks.github.replace('https://', '')}</span>}
+      <header className={`mb-4 flex items-center gap-6 ${data.personalInfo?.photo ? 'text-left' : 'text-center justify-center'}`}>
+        {data.personalInfo?.photo && (
+          <div className="shrink-0">
+            <div className={`${preview ? 'w-20 h-20' : 'w-24 h-24'} border-2 border-black overflow-hidden bg-white shadow-sm`}>
+              <img src={data.personalInfo.photo} alt="Profile" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        )}
+        <div className="flex-1">
+          <h1 className={`${nameFs} font-bold uppercase tracking-tight text-black mb-1`}>
+            {data.personalInfo?.firstName} {data.personalInfo?.lastName}
+          </h1>
+          <div className={`flex flex-wrap ${data.personalInfo?.photo ? 'justify-start' : 'justify-center'} gap-x-3 gap-y-1 ${subFs} text-black`}>
+            {data.personalInfo?.email && <span>{data.personalInfo.email}</span>}
+            {data.personalInfo?.phone && <span>| {data.personalInfo.phone}</span>}
+            {data.personalInfo?.address && <span>| {data.personalInfo.address}</span>}
+            {data.socialLinks?.linkedin && <span>| {data.socialLinks.linkedin.replace('https://', '')}</span>}
+            {data.socialLinks?.github && <span>| {data.socialLinks.github.replace('https://', '')}</span>}
+          </div>
         </div>
       </header>
 
@@ -120,6 +129,47 @@ const AtsTemplate = ({ data, preview = false }) => {
               </div>
             ))}
           </div>
+        </section>
+      )}
+
+      {/* ========= CERTIFICATIONS ========= */}
+      {data.certifications && data.certifications.length > 0 && (
+        <section className="mb-4">
+          <h3 className={`${headingFs} font-bold border-b-2 border-black pb-0.5 mb-2 uppercase`}>Certifications</h3>
+          <ul className="list-disc list-outside pl-5 space-y-0.5">
+            {data.certifications.map((cert, index) => (
+              <li key={index}>
+                <span className="font-bold">{cert.name}</span> — {cert.issuer} {cert.date ? `(${cert.date})` : ''}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ========= ACHIEVEMENTS ========= */}
+      {data.achievements && data.achievements.length > 0 && (
+        <section className="mb-4">
+          <h3 className={`${headingFs} font-bold border-b-2 border-black pb-0.5 mb-2 uppercase`}>Achievements</h3>
+          <ul className="list-disc list-outside pl-5 space-y-0.5">
+            {data.achievements.map((ach, index) => (
+              <li key={index}>{ach}</li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* ========= LANGUAGES & HOBBIES ========= */}
+      {data.languages && data.languages.length > 0 && (
+        <section className="mb-2">
+          <h3 className={`${headingFs} font-bold border-b-2 border-black pb-0.5 mb-2 uppercase`}>Languages</h3>
+          <p>{data.languages.map(lang => `${lang.language} (${lang.proficiency})`).join(', ')}</p>
+        </section>
+      )}
+
+      {data.hobbies && data.hobbies.length > 0 && (
+        <section className="mb-2">
+          <h3 className={`${headingFs} font-bold border-b-2 border-black pb-0.5 mb-2 uppercase`}>Hobbies</h3>
+          <p>{data.hobbies.join(', ')}</p>
         </section>
       )}
     </div>

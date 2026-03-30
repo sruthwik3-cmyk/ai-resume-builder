@@ -80,7 +80,7 @@ const resumeSchema = new mongoose.Schema(
     selectedTemplate: {
       type: String,
       default: 'modern',
-      enum: ['modern', 'minimal', 'creative', 'ats', 'elite'],
+      enum: ['modern', 'minimal', 'creative', 'ats', 'elite', 'executive', 'classic'],
     },
   },
   {
