@@ -17,6 +17,15 @@
   animation: gradient 8s linear infinite;
 }
 
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
 @layer base {
   :root {
     --primary: 124 58% 50%;
@@ -24,7 +33,7 @@
   }
 
   body {
-    @apply bg-gray-50 text-slate-900 font-sans antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-500;
+    @apply bg-black text-slate-300 font-sans antialiased selection:bg-cyan-500/30 transition-colors duration-500;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -51,12 +60,12 @@
   }
   
   .glass-card {
-    @apply bg-white/80 backdrop-blur-xl border border-white/40 dark:bg-slate-900/80 dark:border-slate-800 transition-all duration-500 hover:shadow-2xl hover:shadow-indigo-500/10;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+    @apply bg-neutral-900/50 backdrop-blur-xl border border-neutral-800 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
   }
 
   .btn-premium {
-    @apply relative overflow-hidden bg-indigo-600 text-white px-8 py-3 rounded-2xl font-bold shadow-xl shadow-indigo-600/20 hover:shadow-indigo-600/30 hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 flex items-center justify-center;
+    @apply relative overflow-hidden bg-cyan-400 text-black px-8 py-3 rounded-2xl font-black shadow-[0_0_20px_rgba(34,211,238,0.3)] hover:shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:-translate-y-1 active:translate-y-0 active:scale-95 transition-all duration-300 flex items-center justify-center;
   }
 
   .premium-gradient {
@@ -65,7 +74,7 @@
   }
 
   .input-premium {
-    @apply w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 shadow-sm placeholder:text-slate-400 dark:placeholder:text-slate-500 dark:text-slate-200;
+    @apply w-full px-6 py-4 border border-neutral-900 bg-neutral-950/50 rounded-2xl focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500/50 outline-none transition-all duration-300 shadow-sm placeholder:text-neutral-700 text-white font-medium text-sm;
   }
 }
 

@@ -24,7 +24,7 @@ const AppContent = () => {
   const isBuilder = location.pathname.startsWith('/builder');
 
   return (
-    <div className="min-h-screen flex flex-col font-sans text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 selection:bg-indigo-500/30">
+    <div className="min-h-screen flex flex-col font-sans text-neutral-300 bg-black selection:bg-cyan-500/30">
       <Toaster position="top-center" toastOptions={{ className: 'dark:bg-gray-800 dark:text-white' }} />
       {!isBuilder && <Navbar />}
       <main className={`flex-grow w-full relative ${isBuilder ? 'h-screen overflow-hidden' : ''}`}>
@@ -43,10 +43,11 @@ const AppContent = () => {
           <Route path="/builder/:id" element={<ProtectedRoute><ResumeBuilder /></ProtectedRoute>} />
           <Route path="/automation" element={<ProtectedRoute><AutomationAssistant /></ProtectedRoute>} />
           <Route path="/automation/history" element={<ProtectedRoute><AutomationHistory /></ProtectedRoute>} />
+          <Route path="/help" element={<Home />} /> {/* Temporary: Reusing Home for help-sidebar logic if implemented there */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      {!isBuilder && <Footer />}
+      {!isBuilder && location.pathname !== '/' && <Footer />}
     </div>
   );
 };
